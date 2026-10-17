@@ -53,26 +53,6 @@ Quem trabalha com confeitaria de forma autônoma costuma cuidar de tudo sozinha:
 - Categorias, sabores e tamanhos
 - Imagens e preços
 
-### 📖 Receitas e fichas técnicas
-- Registro de receitas com ingredientes e quantidades
-- Modo de preparo
-- Rendimento e tempo de produção
-
-### 📦 Controle de estoque
-- Gerenciamento de ingredientes e materiais
-- Controle de quantidades e validades
-- Alertas de estoque baixo
-
-### 📅 Agenda
-- Visualização das encomendas em calendário
-- Organização por datas de produção, entrega e retirada
-
-### 📈 Relatórios
-- Relatório de pedidos
-- Produtos mais vendidos
-- Encomendas concluídas e canceladas
-- Consumo de ingredientes
-
 ### ⚙️ Configurações
 - Informações da confeitaria
 - Dados do usuário e alteração de senha
@@ -190,6 +170,11 @@ Os arquivos serão gerados na pasta `dist/`.
 
 Feito com 💜 por **Ana Clara e Bruna**
 
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu Nome](https://linkedin.com/in/seu-perfil)
+Ana Clara A. Pinheiro
+- GitHub: 
+- LinkedIn:
+
+Bruna Damasceno de Azevedo
+- GitHub: 
+- LinkedIn: 
 >>>>>>> origin/main
