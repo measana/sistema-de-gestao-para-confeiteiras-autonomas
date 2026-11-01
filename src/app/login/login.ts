@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginCredentials } from '../model/login';
 import { LoginService } from './login.service';
 
@@ -18,7 +19,10 @@ export class Login {
   protected readonly loginMessage = signal('');
   protected readonly isLoading = signal(false);
 
-  constructor(private readonly loginService: LoginService) {}
+  constructor(
+    private readonly loginService: LoginService,
+    private readonly router: Router,
+  ) {}
 
   protected togglePasswordVisibility(): void {
     this.passwordVisible.update((visible) => !visible);
@@ -31,11 +35,12 @@ export class Login {
     this.loginService.login(this.credentials).subscribe({
       next: (users) => {
         this.isLoading.set(false);
-        this.loginMessage.set(
-          users.length > 0
-            ? `Bem-vinda, ${users[0].usuario}!`
-            : 'Usuário ou senha inválidos.',
-        );
+        if (users.length > 0) {
+          this.router.navigateByUrl('/menu');
+          return;
+        }
+
+        this.loginMessage.set('Usuário ou senha inválidos.');
       },
       error: () => {
         this.isLoading.set(false);
