@@ -1,0 +1,18 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "ana",
+      "senha": "ana123"
+    },
+    {
+      "id": 2,
+      "usuario": "bruna",
+      "senha": "bruna123"
+    }
+  ],
+  "clientes": [],
+  "produtos": [],
+  "ingredientes": [],
+  "pedidos": []
+}
