@@ -1,0 +1,302 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.tela-login,
+.tela-login * {
+  box-sizing: border-box;
+}
+
+.tela-login {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  padding: 24px;
+  background: #fff;
+  color: #f95268;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.image-3 {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+.frame-3 {
+  position: relative;
+  width: min(611px, 100%);
+  height: 793px;
+  overflow: hidden;
+  border-radius: 40px;
+  background: #2c2527;
+  box-shadow: 0 24px 80px rgb(34 23 25 / 24%);
+}
+
+.sign-in,
+.please-enter-your-details-to-sign-in,
+.frame-4,
+.frame-5,
+.frame-6,
+.forgot-password,
+.login-message {
+  position: absolute;
+}
+
+.sign-in {
+  top: 143px;
+  left: 50%;
+  width: calc(100% - 48px);
+  max-width: 500px;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(30px, 3.8vw, 45px);
+  font-weight: 600;
+  text-align: center;
+}
+
+.please-enter-your-details-to-sign-in {
+  top: 224px;
+  left: 50%;
+  width: min(363px, calc(100% - 48px));
+  margin: 0;
+  transform: translateX(-50%);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.frame-4,
+.frame-5 {
+  left: 60px;
+  width: calc(100% - 120px);
+  height: 61px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f9f9f9;
+}
+
+.frame-4 {
+  top: 320px;
+}
+
+.frame-5 {
+  top: 411px;
+}
+
+.email,
+.password {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 23px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #2c2527;
+  font: 400 17px 'DM Sans', sans-serif;
+}
+
+.password {
+  padding-right: 100px;
+}
+
+.email::placeholder,
+.password::placeholder {
+  color: #a7a7a7;
+  opacity: 1;
+}
+
+.frame-4:focus-within,
+.frame-5:focus-within {
+  outline: 2px solid #f95268;
+  outline-offset: 2px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: #8e3b4b;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.forgot-password {
+  top: 488px;
+  right: 30px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #d9d9d9;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.frame-6 {
+  top: 591px;
+  left: 60px;
+  display: grid;
+  width: calc(100% - 120px);
+  height: 61px;
+  place-items: center;
+  border: 0;
+  border-radius: 16px;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.frame-6:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.frame-6:not(:disabled):hover {
+  background: #fff0f2;
+}
+
+.get-started {
+  color: #f95268;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.login-message {
+  top: 674px;
+  right: 60px;
+  left: 60px;
+  margin: 0;
+  color: #f7cbd1;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+button:focus-visible {
+  outline: 2px solid #f95268;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .tela-login {
+    padding: 16px;
+  }
+
+  .frame-3 {
+    height: 700px;
+    border-radius: 28px;
+  }
+
+  .sign-in {
+    top: 78px;
+  }
+
+  .please-enter-your-details-to-sign-in {
+    top: 151px;
+    font-size: 15px;
+  }
+
+  .frame-4,
+  .frame-5,
+  .frame-6 {
+    left: 24px;
+    width: calc(100% - 48px);
+  }
+
+  .frame-4 {
+    top: 245px;
+  }
+
+  .frame-5 {
+    top: 330px;
+  }
+
+  .forgot-password {
+    top: 408px;
+    right: 24px;
+    font-size: 14px;
+  }
+
+  .frame-6 {
+    top: 474px;
+  }
+
+  .login-message {
+    top: 558px;
+    right: 24px;
+    left: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .tela-login {
+    padding: 12px;
+  }
+
+  .frame-3 {
+    height: 660px;
+  }
+
+  .frame-4,
+  .frame-5,
+  .frame-6 {
+    left: 18px;
+    width: calc(100% - 36px);
+  }
+
+  .sign-in {
+    top: 66px;
+  }
+
+  .please-enter-your-details-to-sign-in {
+    top: 137px;
+  }
+
+  .frame-4 {
+    top: 218px;
+  }
+
+  .frame-5 {
+    top: 300px;
+  }
+
+  .forgot-password {
+    top: 378px;
+    right: 18px;
+  }
+
+  .frame-6 {
+    top: 445px;
+  }
+
+  .login-message {
+    top: 528px;
+    right: 18px;
+    left: 18px;
+  }
+}

@@ -1,0 +1,61 @@
+<main class="tela-login">
+  <img
+    class="image-3"
+    src="/assets/background.png"
+    alt=""
+    aria-hidden="true"
+  />
+
+  <section class="frame-3" aria-labelledby="login-title">
+    <h1 class="sign-in" id="login-title">Bem-vinda de volta!</h1>
+    <p class="please-enter-your-details-to-sign-in">
+      Acesse seus pedidos e organize a rotina da sua confeitaria.
+    </p>
+
+    <form #loginForm="ngForm" (ngSubmit)="submitLogin()" novalidate>
+      <label class="visually-hidden" for="usuario">Usuário</label>
+      <div class="frame-4">
+        <input
+          class="email"
+          id="usuario"
+          name="usuario"
+          type="text"
+          [(ngModel)]="credentials.usuario"
+          autocomplete="username"
+          placeholder="Digite seu usuário"
+          required
+        />
+      </div>
+
+      <label class="visually-hidden" for="senha">Senha</label>
+      <div class="frame-5">
+        <input
+          class="password"
+          id="senha"
+          name="senha"
+          [type]="passwordVisible() ? 'text' : 'password'"
+          [(ngModel)]="credentials.senha"
+          autocomplete="current-password"
+          placeholder="Digite sua senha"
+          required
+        />
+        <button
+          class="toggle-password"
+          type="button"
+          (click)="togglePasswordVisibility()"
+          [attr.aria-label]="passwordVisible() ? 'Ocultar senha' : 'Mostrar senha'"
+        >
+          {{ passwordVisible() ? 'Ocultar' : 'Mostrar' }}
+        </button>
+      </div>
+
+      <button class="frame-6" type="submit" [disabled]="loginForm.invalid">
+        <span class="get-started">{{ isLoading() ? 'Validando...' : 'Acessar minha conta' }}</span>
+      </button>
+
+      @if (loginMessage()) {
+        <p class="login-message" role="status" aria-live="polite">{{ loginMessage() }}</p>
+      }
+    </form>
+  </section>
+</main>
