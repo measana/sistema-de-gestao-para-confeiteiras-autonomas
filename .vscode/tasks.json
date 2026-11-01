@@ -37,6 +37,13 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "api",
+      "problemMatcher": [],
+      "label": "npm: api",
+      "detail": "json-server --watch db.json --port 3000"
     }
   ]
 }

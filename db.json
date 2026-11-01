@@ -11,7 +11,36 @@
       "senha": "bruna123"
     }
   ],
-  "clientes": [],
+  "clientes": [
+    {
+      "nome": "bruna",
+      "email": "bruna@gmail.com",
+      "telefone": "31991982778",
+      "endereco": "fsdfdwedwdwdwdwe",
+      "id": 1
+    },
+    {
+      "nome": "ana",
+      "email": "ana@gmail.com",
+      "telefone": "23123123122313123123",
+      "endereco": "ADADASD",
+      "id": 2
+    },
+    {
+      "nome": "ana",
+      "email": "ana@gmail.com",
+      "telefone": "(23) 989898989898989",
+      "endereco": "asdad",
+      "id": 3
+    },
+    {
+      "nome": "hjghjghjghjgjhgjhgjhgjhgjhgjhgjhaaaaaaaa",
+      "email": "brunadazevedo33@gmail.com",
+      "telefone": "11111111111",
+      "endereco": "jgfjfjjgfjgfjfjfj",
+      "id": 4
+    }
+  ],
   "produtos": [],
   "ingredientes": [],
   "pedidos": []
