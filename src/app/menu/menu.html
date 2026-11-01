@@ -31,7 +31,7 @@
       <nav class="sidebar__group" aria-label="Navegação principal">
         <ul class="nav">
           <li class="nav__item">
-            <a class="nav__link nav__link--active" href="#dashboard" aria-current="page">
+            <a class="nav__link" href="#dashboard">
               <span class="nav__icon"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
               <span class="nav__label">Dashboard</span>
             </a>
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="#clientes">
+            <a class="nav__link" routerLink="/menu/clienteList" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
               <span class="nav__icon"><svg class="icon" aria-hidden="true"><use href="#i-file-text"/></svg></span>
               <span class="nav__label">Clientes</span>
             </a>
@@ -84,4 +84,8 @@
       </div>
     </div>
   </aside>
+
+  <div class="menu-content">
+    <router-outlet />
+  </div>
 </div>

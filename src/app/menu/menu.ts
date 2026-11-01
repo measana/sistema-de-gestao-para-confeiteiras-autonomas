@@ -1,10 +1,12 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
   styleUrl: './menu.css',
   templateUrl: './menu.html',
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
 })
 export class Menu {
   private readonly mobileBreakpoint = window.matchMedia('(max-width: 1024px)');

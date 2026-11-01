@@ -22,6 +22,7 @@
   --radius-8: 8px;
 
   min-height: 100vh;
+  display: flex;
   background: var(--color-white);
   -webkit-font-smoothing: antialiased;
 }
@@ -45,6 +46,11 @@
   padding: var(--space-40) 17.75px;
   display: flex;
   flex-direction: column;
+}
+
+.menu-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .sidebar__header {
@@ -250,6 +256,8 @@
 .profile-widget__more { width: 20px; height: 20px; color: var(--color-gray-100); flex-shrink: 0; }
 
 @media (max-width: 1024px) {
+  .menu-shell { flex-direction: column; }
+
   .sidebar {
     width: 100%;
     min-height: 0;
