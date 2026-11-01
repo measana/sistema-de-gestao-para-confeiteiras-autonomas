@@ -1,0 +1,394 @@
+/* ==========================================================================
+   Tokens de design (extraídos do Figma)
+   ========================================================================== */
+:host {
+  /* Cores */
+  --color-white: #ffffff;
+  --color-surface: #fffff6;
+  --color-border: rgba(87, 90, 56, 0.26);
+  --color-border-strong: #d4d4c5;
+  --color-text: #2c2527;
+  --color-black: #000000;
+  --color-accent: #f95268;
+  --color-brown: #6b3e26;
+  --color-chip: #fdf8e9;
+  --color-chip-delete: rgb(255, 100, 100);
+  --color-shadow: rgba(44, 37, 39, 0.25);
+
+  /* Tipografia */
+  --font-poppins: "Poppins", sans-serif;
+  --font-inder: "Inder", sans-serif;
+  --font-size-title: 48px;
+  --font-size-lg: 20px;
+  --font-size-sm: 15px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --letter-spacing: 0.01em; /* 0.48px em 48px · 0.2px em 20px · 0.15px em 15px */
+
+  /* Raios */
+  --radius-sm: 9px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 35px;
+
+  /* Espaçamentos (layout desktop 1806 × 1210) */
+  --space-header-top: 24.5px;
+  --space-header-left: 84px;
+  --space-header-right: 43px;
+  --space-header-gap: 44px;
+  --space-table-top: 177px;
+  --space-table-left: 63px;
+  --space-table-right: 28px;
+  --space-table-bottom: 71.5px;
+
+  /* Sombras */
+  --shadow-screen: 5px 4px 8.5px 0 var(--color-shadow);
+
+  /* Transições */
+}
+
+/* ==========================================================================
+   Reset mínimo
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+}
+
+img {
+  display: block;
+  max-width: none;
+}
+
+button,
+input {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+.navbar__link {
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--letter-spacing);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Tela principal
+   ========================================================================== */
+.screen {
+  min-width: 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+}
+
+.screen__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 45px auto;
+  grid-template-areas:
+    "title  profile"
+    "search add";
+  column-gap: 24px;
+  row-gap: var(--space-header-gap);
+  padding: var(--space-header-top) var(--space-header-right) 0 var(--space-header-left);
+}
+
+.screen__title {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing);
+  line-height: normal;
+}
+
+.screen__add {
+  grid-area: add;
+  align-self: start;
+  justify-self: end;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Busca
+   ========================================================================== */
+.search {
+  grid-area: search;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 18.5px;
+  width: 100%;
+  max-width: 536px;
+  height: 72px;
+  padding: 0 0 0 21.5px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.search:focus-within {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
+.search__icon {
+  flex: none;
+  width: 30px;
+  height: 31px;
+}
+
+.search__input {
+  position: relative;
+  top: -2px;
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  padding: 0;
+  color: var(--color-brown);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing);
+  line-height: normal;
+  background: transparent;
+  border: 0;
+  outline: none;
+  appearance: none;
+}
+
+.search__input::placeholder {
+  color: var(--color-brown);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Perfil
+   ========================================================================== */
+.profile {
+  grid-area: profile;
+  align-self: start;
+  position: relative;
+  width: 63px;
+  height: 62px;
+  margin-top: 10px;
+}
+
+.profile__avatar {
+  width: 63px;
+  height: 62px;
+}
+
+.profile__icon {
+  position: absolute;
+  top: 16px;
+  left: 19px;
+  width: 28.5px;
+  height: 28.7px;
+}
+
+/* ==========================================================================
+   Botão
+   ========================================================================== */
+.button {
+  width: 228px;
+  height: 52px;
+  padding: 0 0 0 3px;
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing);
+  line-height: normal;
+  background: var(--color-accent);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.button:focus-visible,
+.table__edit:focus-visible,
+.clients__scroll:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Tabela de clientes
+   ========================================================================== */
+.clients {
+  padding: var(--space-table-top) var(--space-table-right) var(--space-table-bottom) var(--space-table-left);
+}
+
+.clients__scroll {
+  overflow-x: auto;
+}
+
+.clients__table {
+  width: 100%;
+  min-width: 960px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.clients__table .mat-mdc-header-cell {
+  height: 72px;
+  color: var(--color-black);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-poppins);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.clients__table .mat-mdc-cell {
+  height: 72px;
+  color: var(--color-black);
+  font-family: var(--font-inder);
+  font-size: var(--font-size-lg);
+  text-align: center;
+}
+
+.clients__table .mat-mdc-cell:nth-child(2),
+.clients__table .mat-mdc-cell:nth-child(4) {
+  font-size: var(--font-size-sm);
+}
+
+.clients__table .mat-mdc-header-cell,
+.clients__table .mat-mdc-cell {
+  padding: 12px 16px;
+  border-bottom-color: var(--color-border);
+}
+
+.clients__table .mat-mdc-row:hover {
+  background: var(--color-chip);
+}
+
+.clients__empty {
+  padding: 32px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  text-align: center;
+}
+
+.clients__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table__edit {
+  min-width: 80px;
+  min-height: 40px;
+  padding: 0 16px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  background: var(--color-chip);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.table__delete{
+  min-width: 80px;
+  min-height: 40px;
+  padding: 0 16px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  background: var(--color-chip-delete);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.clients__message {
+  margin: 0 0 16px;
+  color: var(--color-brown);
+}
+
+/* ==========================================================================
+   Tablet (até 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .app {
+    display: block;
+    padding: 0 0 16px;
+  }
+
+  .screen {
+    margin: 0 16px;
+  }
+
+  .screen__header {
+    padding: var(--space-header-top) 32px 0 32px;
+  }
+
+  .clients {
+    padding: 48px 24px 40px;
+  }
+
+}
+
+/* ==========================================================================
+   Mobile (até 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .screen {
+    margin: 0 12px;
+  }
+
+  .screen__header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 45px auto auto;
+    grid-template-areas:
+      "title  profile"
+      "search search"
+      "add    add";
+    row-gap: 24px;
+    padding: var(--space-header-top) 20px 0 20px;
+  }
+
+  .screen__add {
+    justify-self: start;
+    margin-top: 0;
+  }
+
+  .clients {
+    padding: 40px 12px 32px;
+  }
+}

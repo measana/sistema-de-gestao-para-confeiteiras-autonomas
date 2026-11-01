@@ -1,0 +1,77 @@
+<div class="app">
+    <main class="screen">
+
+      <header class="screen__header">
+        <h1 class="screen__title" id="clientes">Clientes</h1>
+
+        <div class="search">
+          <img class="search__icon" src="assets/icon-search.svg" alt="Lupa de pesquisa" width="30" height="31">
+          <input class="search__input" type="search" name="pesquisa" placeholder="Pesquisar cliente" aria-label="Pesquisar cliente" (input)="filtrarClientes($event)">
+        </div>
+
+        <div class="profile">
+          <img class="profile__avatar" src="assets/profile.svg" alt="Avatar do perfil do usuário" width="63" height="62">
+          <img class="profile__icon" src="assets/icon-user.svg" alt="Ícone de usuário">
+        </div>
+
+        <button class="button screen__add" type="button" routerLink="/menu/clienteForm">Adicionar cliente</button>
+      </header>
+
+      <section class="clients" aria-labelledby="clientes">
+        <div class="clients__scroll" tabindex="0" role="region" aria-label="Tabela de clientes">
+          @if (errorMessage()) {
+            <p class="clients__message" role="status">{{ errorMessage() }}</p>
+          }
+
+          <table mat-table [dataSource]="dataSource" class="clients__table" aria-label="Lista de clientes">
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef>Nome</th>
+              <td mat-cell *matCellDef="let cliente">{{ cliente.nome }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let cliente">{{ cliente.email }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefone">
+              <th mat-header-cell *matHeaderCellDef>Telefone</th>
+              <td mat-cell *matCellDef="let cliente">{{ cliente.telefone }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="endereco">
+              <th mat-header-cell *matHeaderCellDef>Endereço</th>
+              <td mat-cell *matCellDef="let cliente">{{ cliente.endereco }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+              <th mat-header-cell *matHeaderCellDef><span class="visually-hidden">Ações</span></th>
+              <td mat-cell *matCellDef="let cliente" class="clients__actions">
+                <button
+                  class="table__edit"
+                  type="button"
+                  [routerLink]="['/menu/clienteItem', cliente.id]"
+                  [attr.aria-label]="'Editar ' + cliente.nome"
+                >Editar</button>
+                <button
+                  class="table__delete"
+                  type="button"
+                  (click)="confirmarExclusao(cliente)"
+                  [attr.aria-label]="'Deletar ' + cliente.nome"
+                >Deletar</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let cliente; columns: displayedColumns"></tr>
+            <tr class="mat-mdc-row" *matNoDataRow>
+              <td class="mat-mdc-cell clients__empty" [attr.colspan]="displayedColumns.length">
+                {{ dataSource.filter ? 'Nenhum cliente encontrado.' : (errorMessage() || 'Nenhum cliente cadastrado.') }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+    </main>
+</div>
