@@ -1,0 +1,35 @@
+<section class="cliente-item" aria-labelledby="cliente-item-title">
+	<h1 id="cliente-item-title">Editar cliente</h1>
+
+	@if (isLoading()) {
+		<p role="status">Carregando cliente...</p>
+	} @else if (errorMessage() && !cliente) {
+		<p class="cliente-item__message" role="alert">{{ errorMessage() }}</p>
+		<button class="cliente-item__button cliente-item__button--cancel" type="button" (click)="cancelar()">Voltar para clientes</button>
+	} @else if (cliente; as clienteAtual) {
+		<form class="cliente-item__form" #editForm="ngForm" (ngSubmit)="salvar()" novalidate>
+			<label for="edit-nome">Nome</label>
+			<input id="edit-nome" name="nome" type="text" autocomplete="name" [(ngModel)]="clienteAtual.nome" required>
+
+			<label for="edit-email">Email</label>
+			<input id="edit-email" name="email" type="email" autocomplete="email" [(ngModel)]="clienteAtual.email" required email>
+
+			<label for="edit-telefone">Telefone</label>
+			<input id="edit-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="numeric" mask="(00) 0000-0000||(00) 00000-0000" [(ngModel)]="clienteAtual.telefone" required>
+
+			<label for="edit-endereco">Endereço</label>
+			<textarea id="edit-endereco" name="endereco" autocomplete="street-address" [(ngModel)]="clienteAtual.endereco" required></textarea>
+
+			@if (errorMessage()) {
+				<p class="cliente-item__message" role="alert">{{ errorMessage() }}</p>
+			}
+
+			<div class="cliente-item__actions">
+				<button class="cliente-item__button cliente-item__button--cancel" type="button" (click)="cancelar()">Cancelar</button>
+				<button class="cliente-item__button cliente-item__button--save" type="submit" [disabled]="editForm.invalid || isSaving()">
+					{{ isSaving() ? 'Salvando...' : 'Salvar alterações' }}
+				</button>
+			</div>
+		</form>
+	}
+</section>
