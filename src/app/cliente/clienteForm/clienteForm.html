@@ -1,37 +1,44 @@
-<div class="app">
-    <main class="screen">
+<main class="cliente-page">
+  <header class="cliente-header">
+    <div>
+      <h1>Adicionar Cliente</h1>
+      <p>Preencha as informações para cadastrar um novo cliente.</p>
+    </div>
 
-      <header class="screen__header">
-        <h1 class="screen__title" id="adicionar-cliente">Adicionar Cliente</h1>
+  </header>
 
-      </header>
+  <section class="form-card" aria-labelledby="adicionar-cliente">
+    <form class="cliente-form" #clienteForm="ngForm" (ngSubmit)="salvar()" novalidate>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" name="nome" placeholder="Nome do cliente" aria-label="Nome" autocomplete="name" [(ngModel)]="cliente.nome" maxlength="40" required>
+      </div>
 
-      <section class="card" aria-labelledby="adicionar-cliente">
-        <form class="form" #clienteForm="ngForm" (ngSubmit)="salvar()" novalidate>
-          <label class="visually-hidden" for="nome">Nome</label>
-          <input class="form__field form__field--name" id="nome" type="text" name="nome" placeholder="Nome" aria-label="Nome" autocomplete="name" [(ngModel)]="cliente.nome" maxlength="40" required>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="seu@email.com" aria-label="Email" autocomplete="email" [(ngModel)]="cliente.email" maxlength="100" required email>
+      </div>
 
-          <label class="visually-hidden" for="email">Email</label>
-          <input class="form__field form__field--email" id="email" type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" [(ngModel)]="cliente.email" maxlength="100" required email>
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input id="telefone" type="tel" name="telefone" placeholder="(00) 00000-0000" aria-label="Telefone" autocomplete="tel" inputmode="numeric" mask="(00) 0000-0000||(00) 00000-0000" [(ngModel)]="cliente.telefone" required>
+      </div>
 
-          <label class="visually-hidden" for="telefone">Telefone</label>
-          <input class="form__field form__field--phone" id="telefone" type="tel" name="telefone" placeholder="Telefone" aria-label="Telefone" autocomplete="tel" inputmode="numeric" mask="(00) 0000-0000||(00) 00000-0000" [(ngModel)]="cliente.telefone" required>
+      <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <textarea id="endereco" name="endereco" placeholder="Rua, número, bairro e complemento" aria-label="Endereço" autocomplete="street-address" [(ngModel)]="cliente.endereco" maxlength="300" required></textarea>
+      </div>
 
-          <label class="visually-hidden" for="endereco">Endereço</label>
-          <textarea class="form__field form__field--address" id="endereco" name="endereco" placeholder="Endereço" aria-label="Endereço" autocomplete="street-address" [(ngModel)]="cliente.endereco" maxlength="300" required></textarea>
+      @if (errorMessage()) {
+        <p class="error-message" role="alert">{{ errorMessage() }}</p>
+      }
 
-          @if (errorMessage()) {
-            <p class="form__message" role="alert">{{ errorMessage() }}</p>
-          }
-
-          <div class="form__actions">
-            <button class="form__button form__button--cancel" type="button" (click)="cancelar()">Cancelar</button>
-            <button class="form__button form__button--submit" type="submit" [disabled]="clienteForm.invalid || isSaving()">
-              {{ isSaving() ? 'Salvando...' : 'Salvar' }}
-            </button>
-          </div>
-        </form>
-      </section>
-
-    </main>
-</div>
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="btn-save" [disabled]="clienteForm.invalid || isSaving()">
+          {{ isSaving() ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </form>
+  </section>
+</main>

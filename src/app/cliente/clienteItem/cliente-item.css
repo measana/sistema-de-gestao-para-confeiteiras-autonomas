@@ -1,51 +1,67 @@
 .cliente-item {
-	max-width: 860px;
-	margin: 40px auto;
-	padding: 32px;
+	min-height: 100vh;
+	margin: 0;
+	padding: 40px;
 	color: #2c2527;
-	background: #fffff6;
-	border: 1px solid rgba(0, 0, 0, 0.13);
-	border-radius: 15px;
-	box-shadow: 3px 4px 8px rgba(44, 37, 39, 0.12);
+	background: transparent;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
 }
 
-.cliente-item h1 {
-	margin: 0 0 28px;
-	font-size: 32px;
+.cliente-item__header {
+	margin-bottom: 30px;
+}
+
+.cliente-item__header h1 {
+	margin: 0 0 8px;
+	font-size: 28px;
+	font-weight: 600;
+}
+
+.cliente-item__header p {
+	margin: 0;
+	color: #777;
 }
 
 .cliente-item__form {
-	display: grid;
-	gap: 12px;
+	display: flex;
+	flex-direction: column;
+	max-width: 760px;
+	padding: 35px;
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 12px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .cliente-item__form label {
-	margin-top: 8px;
+	margin-bottom: 9px;
+	color: #444;
 	font-weight: 600;
 }
 
 .cliente-item__form input,
 .cliente-item__form textarea {
 	width: 100%;
-	min-height: 48px;
-	padding: 12px 14px;
+	margin-bottom: 22px;
+	padding: 13px;
 	color: inherit;
 	background: #fff;
-	border: 1px solid #d4d4c5;
+	border: 1px solid #ddd;
 	border-radius: 8px;
 	font: inherit;
 }
 
 .cliente-item__form textarea {
-	min-height: 120px;
+	min-height: 140px;
 	resize: vertical;
 }
 
 .cliente-item__form input:focus-visible,
 .cliente-item__form textarea:focus-visible,
 .cliente-item__button:focus-visible {
-	outline: 2px solid #945631;
-	outline-offset: 2px;
+	outline: 2px solid #f95268;
+	border-color: transparent;
 }
 
 .cliente-item__actions {
@@ -56,12 +72,9 @@
 }
 
 .cliente-item__button {
-	min-height: 44px;
-	padding: 0 18px;
-	border: 1px solid transparent;
+	padding: 12px 25px;
 	border-radius: 8px;
 	font: inherit;
-	font-weight: 600;
 	cursor: pointer;
 }
 
@@ -71,27 +84,28 @@
 }
 
 .cliente-item__button--cancel {
-	color: #6b3e26;
-	background: #fbf7e6;
-	border-color: #ede0c1;
+	color: #333;
+	background: #fff;
+	border: 1px solid #ddd;
 }
 
 .cliente-item__button--save {
 	color: #fff;
 	background: #f95268;
+	border: 0;
 }
 
 .cliente-item__message {
-	color: #6b3e26;
+	margin: 0 0 20px;
+	color: #c62828;
 }
 
 @media (max-width: 768px) {
 	.cliente-item {
-		margin: 16px 12px;
 		padding: 20px;
 	}
 
-	.cliente-item__actions {
-		flex-direction: column-reverse;
+	.cliente-item__form {
+		padding: 20px;
 	}
 }

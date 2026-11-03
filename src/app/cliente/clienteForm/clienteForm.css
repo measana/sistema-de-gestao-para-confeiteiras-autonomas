@@ -1,263 +1,130 @@
-/* ==========================================================================
-   Tokens de design (extraídos do Figma)
-   ========================================================================== */
-:host {
-  /* Cores */
-  --color-white: #ffffff;
-  --color-surface: #fffff6;
-  --color-border-card: rgba(0, 0, 0, 0.13);
-  --color-border-field: #f9eacd;
-  --color-border-cancel: #ede0c1;
-  --color-text: #2c2527;
-  --color-black: #000000;
-  --color-accent: #f95268;
-  --color-brown: #945631;
-  --color-brown-dark: #6b3e26;
-  --color-cancel: #fbf7e6;
-  --color-shadow: rgba(0, 0, 0, 0.25);
-
-  /* Tipografia */
-  --font-poppins: "Poppins", sans-serif;
-  --font-size-title: 48px;
-  --font-size-xl: 32px;
-  --font-size-md: 16px;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --letter-spacing: 0.01em; /* 0.48px · 0.32px · 0.16px */
-
-  /* Raios */
-  --radius-sm: 9px;
-  --radius-field-lg: 12px;
-  --radius-md: 15px;
-  --radius-xl: 35px;
-
-  /* Espaçamentos (layout desktop 1806 × 1210) */
-  --space-page-top: 40.5px;
-  --space-page-right: 26px;
-  --space-page-bottom: 48.5px;
-  --space-sidebar: 323px;
-  --space-header-top: 93.5px;
-  --space-header-left: 84px;
-  --space-header-right: 97px;
-  --space-card-top: 182px;
-  --space-card-left: 106px;
-  --space-card-right: 97px;
-  --space-card-bottom: 70.5px;
-
-  /* Sombras */
-  --shadow-screen: 5px 4px 8.5px 0 var(--color-shadow);
-  --shadow-card: 3px 4px 4px 0 var(--color-shadow);
-
-  /* Transições */
-  --transition-menu: 0.3s ease;
+.cliente-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: transparent;
+  font-family: Arial, sans-serif;
 }
 
-/* ==========================================================================
-   Reset mínimo
-   ========================================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background: var(--color-white);
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-weight: var(--font-weight-regular);
-  line-height: normal;
-}
-
-img {
-  display: block;
-  max-width: none;
-}
-
-button,
-input,
-textarea {
-  font: inherit;
-  letter-spacing: inherit;
-}
-
-/* ==========================================================================
-   Layout da página
-   ========================================================================== */
-.app {
-  display: block;
-  min-height: 100%;
-}
-
-/* ==========================================================================
-   Tela principal
-   ========================================================================== */
-.screen {
-  min-width: 0;
-  background: var(--color-surface);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-screen);
-}
-
-.screen__header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 45px;
-  column-gap: 24px;
-  padding: var(--space-header-top) var(--space-header-right) 0 var(--space-header-left);
-}
-
-.screen__title {
+.cliente-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  max-width: 458px;
-  height: 45px;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.cliente-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #2c2527;
+}
+
+.cliente-header p {
   margin: 0;
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-title);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing);
-  line-height: normal;
+  color: #777;
 }
 
-/* ==========================================================================
-   Perfil
-   ========================================================================== */
-/* ==========================================================================
-   Card do formulário
-   ========================================================================== */
-.card {
-  margin: var(--space-card-top) var(--space-card-right) var(--space-card-bottom) var(--space-card-left);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-card);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
+.form-card {
+  max-width: 760px;
+  padding: 35px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
-.form {
+.cliente-form {
   display: flex;
   flex-direction: column;
-  padding: 54px 132px 43px 123px;
 }
 
-.form__field {
-  display: block;
-  width: 100%;
-  padding: 0 4px;
-  color: var(--color-black);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing);
-  line-height: normal;
-  background: var(--color-surface);
-  border: 2px solid var(--color-border-field);
-  border-radius: var(--radius-sm);
-  outline: none;
-  appearance: none;
-}
-
-.form__field::placeholder {
-  color: var(--color-black);
-  opacity: 1;
-}
-
-.form__field:focus-visible,
-.form__button:focus-visible {
-  outline: 2px solid var(--color-brown-dark);
-  outline-offset: 2px;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.form__message {
-  margin: 24px 0 0;
-  color: var(--color-brown-dark);
-  font-size: var(--font-size-md);
-}
-
-.form__field--name {
-  height: 67px;
-  padding-top: 2px;
-}
-
-.form__field--email {
-  height: 66px;
-  margin-top: 32px;
-  padding-top: 7px;
-}
-
-.form__field--phone {
-  height: 68px;
-  margin-top: 37px;
-}
-
-.form__field--address {
-  height: 205px;
-  margin-top: 43px;
-  padding-top: 16px;
-  border-radius: var(--radius-field-lg);
-  resize: none;
-}
-
-/* ==========================================================================
-   Botões
-   ========================================================================== */
-.form__actions {
-  display: grid;
-  grid-template-columns: minmax(0, 416fr) minmax(0, 443fr);
-  column-gap: 138px;
-  margin-top: 33px;
-}
-
-.form__button {
+.form-group {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 81px;
-  padding: 0;
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing);
-  line-height: normal;
-  border-radius: var(--radius-md);
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid #f95268;
+  border-color: transparent;
+}
+
+.error-message {
+  color: #c62828;
+  margin: 0 0 20px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 12px 25px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
 }
 
-.form__button--cancel {
-  color: var(--color-brown);
-  background: var(--color-cancel);
-  border: 1px solid var(--color-border-cancel);
+.btn-cancel {
+  background: white;
+  border: 1px solid #ddd;
+  color: #333;
 }
 
-.form__button--submit {
-  color: var(--color-white);
-  background: var(--color-accent);
-  border: 0;
+.btn-save {
+  background: #f95268;
+  color: white;
+  border: none;
 }
 
-.form__button-label {
-  position: relative;
+.btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.form__button--cancel .form__button-label {
-  top: -4.5px;
-  left: -3px;
+@media (max-width: 768px) {
+  .cliente-page {
+    padding: 20px;
+  }
+
+  .cliente-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
 }
+
 
 .form__button--submit .form__button-label {
   top: -6px;

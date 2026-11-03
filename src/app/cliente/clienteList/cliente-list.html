@@ -8,13 +8,8 @@
           <img class="search__icon" src="assets/icon-search.svg" alt="Lupa de pesquisa" width="30" height="31">
           <input class="search__input" type="search" name="pesquisa" placeholder="Pesquisar cliente" aria-label="Pesquisar cliente" (input)="filtrarClientes($event)">
         </div>
+        <button class="button screen__add" type="button" routerLink="/menu/clienteForm">+ Adicionar cliente</button>
 
-        <div class="profile">
-          <img class="profile__avatar" src="assets/profile.svg" alt="Avatar do perfil do usuário" width="63" height="62">
-          <img class="profile__icon" src="assets/icon-user.svg" alt="Ícone de usuário">
-        </div>
-
-        <button class="button screen__add" type="button" routerLink="/menu/clienteForm">Adicionar cliente</button>
       </header>
 
       <section class="clients" aria-labelledby="clientes">
@@ -45,20 +40,22 @@
             </ng-container>
 
             <ng-container matColumnDef="acoes">
-              <th mat-header-cell *matHeaderCellDef><span class="visually-hidden">Ações</span></th>
-              <td mat-cell *matCellDef="let cliente" class="clients__actions">
-                <button
-                  class="table__edit"
-                  type="button"
-                  [routerLink]="['/menu/clienteItem', cliente.id]"
-                  [attr.aria-label]="'Editar ' + cliente.nome"
-                >Editar</button>
-                <button
-                  class="table__delete"
-                  type="button"
-                  (click)="confirmarExclusao(cliente)"
-                  [attr.aria-label]="'Deletar ' + cliente.nome"
-                >Deletar</button>
+              <th mat-header-cell *matHeaderCellDef>Ações</th>
+              <td mat-cell *matCellDef="let cliente">
+                <div class="clients__actions">
+                  <button
+                    class="table__edit"
+                    type="button"
+                    [routerLink]="['/menu/clienteItem', cliente.id]"
+                    [attr.aria-label]="'Editar ' + cliente.nome"
+                  >Editar</button>
+                  <button
+                    class="table__delete"
+                    type="button"
+                    (click)="confirmarExclusao(cliente)"
+                    [attr.aria-label]="'Deletar ' + cliente.nome"
+                  >Deletar</button>
+                </div>
               </td>
             </ng-container>
 

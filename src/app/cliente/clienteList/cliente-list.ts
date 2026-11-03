@@ -9,7 +9,7 @@ import { ClienteService } from '../cliente.service';
 import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-  imports: [MatDialogModule, NgxMaskDirective],
+  imports: [MatDialogModule],
   selector: 'app-confirm-delete-cliente-dialog',
   standalone: true,
   template: `

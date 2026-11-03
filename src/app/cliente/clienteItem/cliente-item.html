@@ -1,5 +1,10 @@
 <section class="cliente-item" aria-labelledby="cliente-item-title">
-	<h1 id="cliente-item-title">Editar cliente</h1>
+	<header class="cliente-item__header">
+		<div>
+			<h1 id="cliente-item-title">Editar cliente</h1>
+			<p>Atualize as informações deste cliente.</p>
+		</div>
+	</header>
 
 	@if (isLoading()) {
 		<p role="status">Carregando cliente...</p>
