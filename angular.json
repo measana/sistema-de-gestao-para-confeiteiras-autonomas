@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "meu-projeto": {
+    "pettitgato": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "meu-projeto:build:production"
+              "buildTarget": "pettitgato:build:production"
             },
             "development": {
-              "buildTarget": "meu-projeto:build:development"
+              "buildTarget": "pettitgato:build:development"
             }
           },
           "defaultConfiguration": "development"
