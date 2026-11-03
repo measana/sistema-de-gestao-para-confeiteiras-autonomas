@@ -36,6 +36,7 @@ export class Login {
       next: (users) => {
         this.isLoading.set(false);
         if (users.length > 0) {
+          sessionStorage.setItem('usuario', users[0].usuario);
           this.router.navigateByUrl('/menu');
           return;
         }

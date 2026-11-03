@@ -56,6 +56,7 @@ export class Dashboard implements OnInit {
 
   pedidos: PedidoDashboard[] = [];
   clientes: Cliente[] = [];
+  nomeUsuario = sessionStorage.getItem('usuario') || 'Usuário';
 
   totalPedidos = 0;
   totalClientes = 0;

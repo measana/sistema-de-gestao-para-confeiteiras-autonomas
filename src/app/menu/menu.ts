@@ -12,6 +12,7 @@ export class Menu {
   private readonly mobileBreakpoint = window.matchMedia('(max-width: 1024px)');
   private readonly destroyRef = inject(DestroyRef);
   protected readonly menuOpen = signal(!this.mobileBreakpoint.matches);
+  protected readonly nomeUsuario = sessionStorage.getItem('usuario') || 'Usuário';
 
   constructor() {
     const syncWithViewport = (event: MediaQueryListEvent) => {

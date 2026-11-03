@@ -141,12 +141,12 @@
             <div class="profile-widget__avatar">
               <img
                 src="https://www.figma.com/api/mcp/asset/98092589-64f8-4866-b860-eccfe83ec185/17be4.png"
-                alt="Foto de perfil de Ana Clara Alves"
+                [alt]="'Foto de perfil de ' + nomeUsuario"
               />
             </div>
             <div class="profile-widget__text">
-              <p class="profile-widget__name">Ana Clara Alves</p>
-              <p class="profile-widget__email">anaclaraalves@gmail.com</p>
+              <p class="profile-widget__name">{{ nomeUsuario }}</p>
+              <p class="profile-widget__email">Conta conectada</p>
             </div>
           </div>
           <span class="profile-widget__more"
