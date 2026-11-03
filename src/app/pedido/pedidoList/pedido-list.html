@@ -1,0 +1,102 @@
+<div class="pedidos-container">
+  <div class="header">
+    <div>
+      <h1>Pedidos</h1>
+      <p>Gerencie os pedidos realizados na sua confeitaria.</p>
+    </div>
+
+    <a routerLink="/menu/pedidoForm" class="btn-novo"> + Novo Pedido </a>
+  </div>
+
+  @if (errorMessage()) {
+    <p class="mensagem" role="alert">{{ errorMessage() }}</p>
+  }
+
+  <!-- Filtros -->
+  <section class="filtros">
+    <div class="campo-pesquisa">
+      <label for="pesquisa">Pesquisar pedido</label>
+
+      <input
+        id="pesquisa"
+        type="text"
+        placeholder="Digite o número do pedido..."
+        [(ngModel)]="pesquisa"
+      />
+    </div>
+
+    <div>
+      <label for="status">Status</label>
+
+      <select id="status" [(ngModel)]="statusFiltro">
+        <option value="">Todos os status</option>
+        <option value="Pending">Pendente</option>
+        <option value="Delivered">Entregue</option>
+        <option value="Cancelled">Cancelado</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="data">Data</label>
+
+      <input id="data" type="date" [(ngModel)]="dataFiltro" />
+    </div>
+
+    <button type="button" class="btn-limpar" (click)="limparFiltros()">Limpar filtros</button>
+  </section>
+
+  <!-- Tabela -->
+  <section class="tabela-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID Pedido</th>
+          <th>Cliente</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (pedido of pedidosFiltrados(); track pedido.id) {
+          <tr>
+            <td>#{{ pedido.id }}</td>
+
+            <td>{{ nomeCliente(pedido.clienteId) }}</td>
+
+            <td>{{ pedido.data | date: 'dd/MM/yyyy' }}</td>
+
+            <td>
+              <span
+                class="status"
+                [class.pendente]="pedido.status === 'Pending'"
+                [class.entregue]="pedido.status === 'Delivered'"
+                [class.cancelado]="pedido.status === 'Cancelled'"
+              >
+                {{ traduzirStatus(pedido.status) }}
+              </span>
+            </td>
+
+            <td>
+              {{ pedido.total | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </td>
+
+            <td>
+              <a class="btn-detalhes" [routerLink]="['/menu/pedidoItem', pedido.id]">
+                Visualizar
+              </a>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="sem-pedidos">Nenhum pedido encontrado.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <div class="contador">Exibindo {{ pedidosFiltrados().length }} pedido(s).</div>
+</div>

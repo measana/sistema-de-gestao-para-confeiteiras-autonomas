@@ -1,0 +1,166 @@
+<main class="dashboard">
+  <header class="dashboard-header">
+    <div>
+      <p class="subtitle">Painel de controle</p>
+      <h1>Olá, Ana Clara!</h1>
+      <p class="welcome">Acompanhe o desempenho da sua confeitaria.</p>
+    </div>
+  </header>
+
+  @if (carregando()) {
+    <p class="message">Carregando informações do dashboard...</p>
+  } @else if (erro()) {
+    <p class="message error">{{ erro() }}</p>
+    <button class="retry-button" (click)="carregarDashboard()">Tentar novamente</button>
+  } @else {
+    <section class="summary-cards">
+      <article class="summary-card">
+        <div class="card-icon"><img src="assets/carrinho-de-compras.png" alt="Ícone de carrinho de compras" /></div>
+        <div>
+          <p>Total de pedidos</p>
+          <h2>{{ totalPedidos }}</h2>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="card-icon"><img src="assets/satisfacao-do-cliente.png" alt="ícone de satisfação do cliente"></div>
+        <div>
+          <p>Clientes cadastrados</p>
+          <h2>{{ totalClientes }}</h2>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="card-icon"><img src="assets/fatura.png" alt="ícone de fatura"></div>
+        <div>
+          <p>Faturamento</p>
+          <h2>{{ formatarMoeda(faturamento) }}</h2>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="card-icon"><img src="assets/bolo.png" alt="ícone de bolo"></div>
+        <div>
+          <p>Produto mais pedido</p>
+          <h2 class="product-highlight">{{ produtoDestaque }}</h2>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel sales-panel">
+        <h3>Visão geral das vendas</h3>
+
+        <div class="chart">
+          @for (venda of vendasMensais; track venda.mes) {
+            <div class="chart-column">
+              <span class="chart-value">
+                {{ formatarMoeda(venda.total) }}
+              </span>
+
+              <div class="bar-area">
+                <div
+                  class="bar"
+                  [style.height.%]="venda.altura"
+                  [title]="formatarMoeda(venda.total)"
+                ></div>
+              </div>
+
+              <span class="month">{{ venda.mes }}</span>
+            </div>
+          }
+        </div>
+      </article>
+
+      <article class="panel">
+        <h3>Clientes recorrentes</h3>
+
+        @if (clientesRecorrentes.length === 0) {
+          <p class="empty-message">Ainda não há clientes recorrentes.</p>
+        } @else {
+          <div class="ranking-list">
+            @for (cliente of clientesRecorrentes; track cliente.nome) {
+              <div class="ranking-item">
+                <div class="avatar">👤</div>
+                <div class="ranking-info">
+                  <strong>{{ cliente.nome }}</strong>
+                  <small>{{ cliente.quantidadePedidos }} pedidos</small>
+                </div>
+                <strong>{{ formatarMoeda(cliente.totalGasto) }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </article>
+
+      <article class="panel orders-panel">
+        <div class="panel-heading">
+          <h3>Pedidos recentes</h3>
+          <a routerLink="/menu/pedidoList">Ver todos</a>
+        </div>
+
+        @if (pedidosRecentes.length === 0) {
+          <p class="empty-message">Nenhum pedido cadastrado.</p>
+        } @else {
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Cliente</th>
+                  <th>Data</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @for (pedido of pedidosRecentes; track pedido.id) {
+                  <tr>
+                    <td>#{{ pedido.id }}</td>
+                    <td>{{ obterNomeCliente(pedido.clienteId) }}</td>
+                    <td>{{ formatarData(pedido.data) }}</td>
+                    <td>
+                      <span
+                        class="status"
+                        [ngClass]="{
+                          pending: pedido.status === 'Pending',
+                          delivered: pedido.status === 'Delivered',
+                          cancelled: pedido.status === 'Cancelled',
+                        }"
+                      >
+                        {{ traduzirStatus(pedido.status) }}
+                      </span>
+                    </td>
+                    <td>{{ formatarMoeda(pedido.total) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </article>
+
+      <article class="panel">
+        <h3>Produtos mais pedidos</h3>
+
+        @if (produtosMaisPedidos.length === 0) {
+          <p class="empty-message">Ainda não há produtos em pedidos.</p>
+        } @else {
+          <div class="ranking-list">
+            @for (produto of produtosMaisPedidos; track produto.nome) {
+              <div class="ranking-item">
+                <div class="avatar product-avatar"><img src="assets/bolinho.png" alt="Ícone de bolinho" /></div>
+                <div class="ranking-info">
+                  <strong>{{ produto.nome }}</strong>
+                  <small>{{ produto.quantidade }} unidades</small>
+                </div>
+                <strong>{{ formatarMoeda(produto.totalVendido) }}</strong>
+              </div>
+            }
+          </div>
+        }
+      </article>
+    </section>
+  }
+</main>

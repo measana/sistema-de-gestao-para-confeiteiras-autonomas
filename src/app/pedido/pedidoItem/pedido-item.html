@@ -1,0 +1,118 @@
+<div class="detalhes-container">
+  <div class="header">
+    <div>
+      <h1>Detalhes do Pedido</h1>
+      <p>Consulte as informações e os produtos deste pedido.</p>
+    </div>
+
+    <button type="button" class="btn-voltar" (click)="voltar()">Voltar</button>
+  </div>
+
+  @if (carregando()) {
+    <div class="mensagem">Carregando informações do pedido...</div>
+  }
+
+  @if (pedido(); as p) {
+    <!-- Informações principais -->
+    <section class="card">
+      <div class="pedido-header">
+        <div>
+          <span class="legenda">ID do Pedido</span>
+          <h2>#{{ p.id }}</h2>
+        </div>
+
+        <span
+          class="status"
+          [class.pendente]="p.status === 'Pending'"
+          [class.entregue]="p.status === 'Delivered'"
+          [class.cancelado]="p.status === 'Cancelled'"
+        >
+          {{ traduzirStatus(p.status) }}
+        </span>
+      </div>
+
+      <div class="informacoes">
+        <div>
+          <span class="legenda">Cliente</span>
+          <strong>{{ nomeCliente() }}</strong>
+        </div>
+
+        <div>
+          <span class="legenda">Data do pedido</span>
+          <strong>{{ p.data | date: 'dd/MM/yyyy HH:mm' }}</strong>
+        </div>
+
+        <div>
+          <span class="legenda">Modo de pagamento</span>
+          <strong>{{ p.pagamento }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="card">
+      <h2>Produtos do Pedido</h2>
+
+      <div class="tabela-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Preço Unitário</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (item of p.produtos; track item.produtoId) {
+              <tr>
+                <td>{{ item.nome }}</td>
+
+                <td>{{ item.quantidade }}</td>
+
+                <td>
+                  {{ item.preco | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+                </td>
+
+                <td>
+                  {{
+                    item.preco * item.quantidade | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'
+                  }}
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="sem-produtos">Nenhum produto registrado neste pedido.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="total">
+        <span>Valor total do pedido:</span>
+
+        <strong>
+          {{ p.total | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+        </strong>
+      </div>
+    </section>
+
+    <!-- Ações -->
+    <div class="acoes">
+      <button type="button" class="btn-imprimir" (click)="imprimirPedido()">
+        Download PDF / Imprimir
+      </button>
+
+      <button
+        type="button"
+        class="btn-cancelar"
+        (click)="cancelarPedido()"
+        [disabled]="p.status === 'Cancelled'"
+      >
+        Cancelar Pedido
+      </button>
+    </div>
+  }
+</div>

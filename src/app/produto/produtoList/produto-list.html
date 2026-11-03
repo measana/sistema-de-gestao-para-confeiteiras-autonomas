@@ -1,0 +1,75 @@
+<main class="produto-page">
+  <header class="produto-header">
+    <h1>Produtos</h1>
+
+    <div class="produto-actions">
+      <input
+        type="search"
+        placeholder="Pesquisar produto"
+        aria-label="Pesquisar produto"
+        [value]="termoBusca()"
+        (input)="termoBusca.set($any($event.target).value)"
+      />
+
+      <button type="button" class="btn-add" routerLink="/menu/produtoForm">
+        + Adicionar produto
+      </button>
+    </div>
+  </header>
+
+  @if (errorMessage()) {
+    <p class="message" role="alert">{{ errorMessage() }}</p>
+  }
+
+  <section class="produto-card">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (produto of produtosFiltrados(); track produto.id) {
+            <tr>
+              <td>
+                @if (produto.imagem) {
+                  <img class="produto-image" [src]="produto.imagem" [alt]="produto.nome" />
+                } @else {
+                  <div class="image-placeholder">Sem imagem</div>
+                }
+              </td>
+
+              <td>{{ produto.nome }}</td>
+
+              <td>
+                {{ produto.preco | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+              </td>
+
+              <td>{{ produto.categoria }}</td>
+
+              <td class="table-actions">
+                <button type="button" class="btn-edit" [routerLink]="['/menu/produtoForm', produto.id]">
+                  Editar
+                </button>
+
+                <button type="button" class="btn-delete" (click)="confirmarExclusao(produto)">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5" class="empty">Nenhum produto encontrado.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>

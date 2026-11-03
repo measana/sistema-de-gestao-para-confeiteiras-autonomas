@@ -1,0 +1,125 @@
+<div class="pedido-container">
+  <div class="header">
+    <div>
+      <h1>Novo Pedido</h1>
+      <p>Preencha as informações para registrar um novo pedido.</p>
+    </div>
+
+    <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+  </div>
+
+  <!-- Seleção do cliente -->
+  <section class="card">
+    <h2>Informações do Cliente</h2>
+
+    <label for="cliente">Selecione o cliente</label>
+
+    <select
+      id="cliente"
+      [ngModel]="clienteSelecionado()"
+      (ngModelChange)="clienteSelecionado.set($event)"
+    >
+      <option [ngValue]="null">Selecione um cliente</option>
+
+      @for (cliente of clientes(); track cliente.id) {
+        <option [ngValue]="cliente.id">{{ cliente.nome }}</option>
+      }
+    </select>
+  </section>
+
+  <!-- Produtos -->
+  <section class="card">
+    <h2>Adicionar Produtos</h2>
+
+    <input
+      type="text"
+      placeholder="Pesquisar produto..."
+      [ngModel]="produtoBusca()"
+      (ngModelChange)="produtoBusca.set($event)"
+    />
+
+    <div class="produtos-lista">
+      @for (produto of produtosFiltrados(); track produto.id) {
+        <div class="produto-card">
+          @if (produto.imagem) {
+            <img [src]="produto.imagem" [alt]="produto.nome" />
+          }
+
+          <div class="produto-info">
+            <h3>{{ produto.nome }}</h3>
+            <p>{{ produto.categoria }}</p>
+            <strong>
+              {{ produto.preco | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+            </strong>
+          </div>
+
+          <button type="button" class="btn-adicionar" (click)="adicionarProduto(produto)">
+            Adicionar
+          </button>
+        </div>
+      } @empty {
+        <p>Nenhum produto encontrado.</p>
+      }
+    </div>
+  </section>
+
+  <!-- Carrinho -->
+  <section class="card">
+    <h2>Resumo do Pedido</h2>
+
+    @for (item of carrinho(); track item.produtoId) {
+      <div class="carrinho-item">
+        <div class="item-info">
+          <strong>{{ item.nome }}</strong>
+          <span>
+            {{ item.preco | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+          </span>
+        </div>
+
+        <div class="quantidade">
+          <button type="button" (click)="diminuirQuantidade(item.produtoId)">-</button>
+
+          <span>{{ item.quantidade }}</span>
+
+          <button type="button" (click)="aumentarQuantidade(item.produtoId)">+</button>
+        </div>
+
+        <strong>
+          {{ item.preco * item.quantidade | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+        </strong>
+
+        <button type="button" class="btn-remover" (click)="removerProduto(item.produtoId)">
+          Remover
+        </button>
+      </div>
+    } @empty {
+      <div class="carrinho-vazio">Nenhum produto adicionado.</div>
+    }
+
+    <div class="total">
+      <span>Total do pedido:</span>
+      <strong>
+        {{ total() | currency: 'BRL' : 'symbol' : '1.2-2' : 'pt-BR' }}
+      </strong>
+    </div>
+  </section>
+
+  <!-- Pagamento -->
+  <section class="card">
+    <h2>Forma de Pagamento</h2>
+
+    <select [ngModel]="pagamento()" (ngModelChange)="pagamento.set($event)">
+      <option value="">Selecione uma forma de pagamento</option>
+      <option value="Pix">Pix</option>
+      <option value="Dinheiro">Dinheiro</option>
+      <option value="Cartão de Crédito">Cartão de Crédito</option>
+      <option value="Cartão de Débito">Cartão de Débito</option>
+    </select>
+  </section>
+
+  <div class="acoes">
+    <button type="button" class="btn-salvar" [disabled]="isSaving()" (click)="salvarPedido()">
+      {{ isSaving() ? 'Salvando...' : 'Finalizar Pedido' }}
+    </button>
+  </div>
+</div>

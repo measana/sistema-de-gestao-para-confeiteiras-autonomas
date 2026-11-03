@@ -1,0 +1,86 @@
+<main class="produto-page">
+  <header class="produto-header">
+    <h1>{{ isEdicao() ? 'Editar Produto' : 'Adicionar Produto' }}</h1>
+  </header>
+
+  @if (isLoading()) {
+    <p>Carregando produto...</p>
+  } @else if (produtoNaoEncontrado()) {
+    <p class="error-message" role="alert">{{ errorMessage() }}</p>
+
+    <button type="button" class="btn-cancel" (click)="cancelar()">Voltar</button>
+  } @else {
+    <section class="form-card">
+      <form #produtoForm="ngForm" (ngSubmit)="salvar()">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+
+          <input
+            id="nome"
+            name="nome"
+            type="text"
+            placeholder="Nome do produto"
+           [ngModel]="nome()"(ngModelChange)="nome.set($event)"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+
+          <select id="categoria" name="categoria" [(ngModel)]="categoria" required>
+            <option value="" disabled>Selecione uma categoria</option>
+            <option value="Bolos">Bolos</option>
+            <option value="Docinhos">Docinhos</option>
+            <option value="Pães">Pães</option>
+            <option value="Salgados">Salgados</option>
+            <option value="Outros">Outros</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="imagem">{{ isEdicao() ? 'Alterar imagem' : 'Upload de imagem' }}</label>
+
+          <input
+            id="imagem"
+            name="imagem"
+            type="file"
+            accept="image/*"
+            (change)="selecionarImagem($event)"
+          />
+
+          @if (imagem()) {
+            <img class="preview" [src]="imagem()" alt="Pré-visualização do produto" />
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="preco">Preço (R$)</label>
+
+          <input
+            id="preco"
+            name="preco"
+            type="number"
+            min="0.01"
+            step="0.01"
+            placeholder="0,00"
+            [ngModel]="preco()" (ngModelChange)="preco.set($event)"
+            required
+          />
+        </div>
+
+        @if (errorMessage()) {
+          <p class="error-message" role="alert">{{ errorMessage() }}</p>
+        }
+
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="cancelar()">Cancelar</button>
+
+          <button type="submit" class="btn-save" [disabled]="produtoForm.invalid || isSaving()">
+            {{ isSaving() ? 'Salvando...' : isEdicao() ? 'Salvar alterações' : 'Salvar' }}
+          </button>
+        </div>
+      </form>
+    </section>
+  }
+</main>

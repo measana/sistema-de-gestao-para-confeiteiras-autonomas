@@ -1,0 +1,160 @@
+.pedidos-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+}
+
+.header p {
+  color: #777;
+  margin: 0;
+}
+
+.btn-novo {
+  background: #F95268;
+  color: white;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.filtros {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.filtros > div {
+  flex: 1;
+}
+
+.filtros label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.filtros input,
+.filtros select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.btn-limpar {
+  padding: 11px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #eee;
+  cursor: pointer;
+}
+
+.tabela-container {
+  background: white;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 17px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+th {
+  background: #f8f8f8;
+  color: #555;
+  font-weight: 600;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pendente {
+  background: #fff2d6;
+  color: #996500;
+}
+
+.entregue {
+  background: #dcf5e5;
+  color: #18733a;
+}
+
+.cancelado {
+  background: #ffe2e2;
+  color: #b42318;
+}
+
+.btn-detalhes {
+  color: #F95268;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-detalhes:hover {
+  text-decoration: underline;
+}
+
+.sem-pedidos {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+.contador {
+  text-align: right;
+  color: #777;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+@media (max-width: 750px) {
+  .pedidos-container {
+    padding: 15px;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros > div {
+    width: 100%;
+  }
+}

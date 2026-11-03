@@ -6,9 +6,10 @@ import { RouterLink } from '@angular/router';
 import { catchError, filter, of, startWith, Subject, switchMap } from 'rxjs';
 import { Cliente } from '../../model/cliente';
 import { ClienteService } from '../cliente.service';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, NgxMaskDirective],
   selector: 'app-confirm-delete-cliente-dialog',
   standalone: true,
   template: `

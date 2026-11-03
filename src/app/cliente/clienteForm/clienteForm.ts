@@ -6,6 +6,7 @@ import { Cliente } from '../../model/cliente';
 import { ClienteService } from '../cliente.service';
 
 @Component({
+  standalone: true,
   imports: [FormsModule, NgxMaskDirective],
   selector: 'app-cliente-form',
   styleUrl: './clienteForm.css',
