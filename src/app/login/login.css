@@ -41,6 +41,19 @@
   box-shadow: 0 24px 80px rgb(34 23 25 / 24%);
 }
 
+.login-logo {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  width: 84px;
+  height: 84px;
+  padding: 8px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
+
 .sign-in,
 .please-enter-your-details-to-sign-in,
 .frame-4,
@@ -52,7 +65,7 @@
 }
 
 .sign-in {
-  top: 143px;
+  top: 135px;
   left: 50%;
   width: calc(100% - 48px);
   max-width: 500px;
@@ -61,11 +74,12 @@
   font-family: 'Fraunces', Georgia, serif;
   font-size: clamp(30px, 3.8vw, 45px);
   font-weight: 600;
+  line-height: 1.08;
   text-align: center;
 }
 
 .please-enter-your-details-to-sign-in {
-  top: 224px;
+  top: 255px;
   left: 50%;
   width: min(363px, calc(100% - 48px));
   margin: 0;
@@ -216,8 +230,15 @@ button:focus-visible {
     top: 78px;
   }
 
+  .login-logo {
+    top: 16px;
+    width: 52px;
+    height: 52px;
+    padding: 5px;
+  }
+
   .please-enter-your-details-to-sign-in {
-    top: 151px;
+    top: 163px;
     font-size: 15px;
   }
 
