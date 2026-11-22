@@ -15,6 +15,7 @@ import { PedidoList } from './pedido/pedidoList/pedido-list';
 import { PedidoItem } from './pedido/pedidoItem/pedido-item';
 //Dashboard
 import { Dashboard } from './dashboard/dashboard';
+import { PerfilConfiguracao } from './perfil/perfil-configuracao';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: Dashboard },
+      { path: 'perfil', component: PerfilConfiguracao },
       //Clientes
       { path: 'clienteList', component: ClienteList },
       { path: 'clienteForm', component: ClienteForm },
