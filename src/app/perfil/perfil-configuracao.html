@@ -1,0 +1,43 @@
+<main class="profile-page">
+  <header class="profile-page__header">
+    <p class="profile-page__eyebrow">Conta</p>
+    <h1>Configuração do perfil</h1>
+    <p>Atualize seu nome e sua foto de perfil.</p>
+  </header>
+
+  <form class="profile-form" (ngSubmit)="save()">
+    <section class="photo-section" aria-labelledby="photo-heading">
+      <div class="photo-section__preview">
+        @if (foto()) {
+          <img [src]="foto()" alt="Prévia da foto de perfil" />
+        } @else {
+          <span aria-hidden="true">{{ nome().charAt(0).toUpperCase() || '?' }}</span>
+        }
+      </div>
+      <div class="photo-section__controls">
+        <h2 id="photo-heading">Foto de perfil</h2>
+        <p>Imagem JPG, PNG ou WEBP. Até 5 MB.</p>
+        <input id="profile-photo" type="file" accept="image/*" (change)="selectPhoto($event)" />
+        <label class="photo-button" for="profile-photo">Escolher foto</label>
+      </div>
+    </section>
+
+    <div class="form-field">
+      <label for="profile-name">Nome de perfil</label>
+      <input id="profile-name" name="nome" type="text" [ngModel]="nome()" (ngModelChange)="nome.set($event)" />
+    </div>
+
+    @if (error()) {
+      <p class="form-message form-message--error" role="alert">{{ error() }}</p>
+    }
+    @if (message()) {
+      <p class="form-message form-message--success" role="status">{{ message() }}</p>
+    }
+
+    <footer class="profile-form__footer">
+      <button class="save-button" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Salvando...' : 'Salvar alterações' }}
+      </button>
+    </footer>
+  </form>
+</main>
