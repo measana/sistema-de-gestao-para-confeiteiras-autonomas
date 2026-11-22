@@ -230,6 +230,11 @@
   border-radius: 999px;
   overflow: hidden;
   flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #f8dce0;
+  color: #923848;
+  font-weight: 700;
 }
 
 .profile-widget__avatar img {
@@ -284,4 +289,19 @@
 
 @media (max-width: 768px) {
   .sidebar { padding: var(--space-16); }
+}
+
+@media print {
+  .menu-shell {
+    display: block;
+    min-height: 0;
+  }
+
+  .sidebar {
+    display: none !important;
+  }
+
+  .menu-content {
+    width: 100%;
+  }
 }

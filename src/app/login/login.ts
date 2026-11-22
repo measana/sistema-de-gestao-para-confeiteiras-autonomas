@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginCredentials } from '../model/login';
 import { LoginService } from './login.service';
+import { PerfilService } from '../perfil/perfil.service';
 
 @Component({
   imports: [FormsModule],
@@ -11,6 +12,8 @@ import { LoginService } from './login.service';
   templateUrl: './login.html',
 })
 export class Login {
+  private readonly perfilService = inject(PerfilService);
+
   protected readonly credentials: LoginCredentials = {
     usuario: '',
     senha: '',
@@ -36,7 +39,12 @@ export class Login {
       next: (users) => {
         this.isLoading.set(false);
         if (users.length > 0) {
-          sessionStorage.setItem('usuario', users[0].usuario);
+          this.perfilService.definirPerfil({
+            id: users[0].id,
+            usuario: users[0].usuario,
+            nome: users[0].nome || users[0].usuario,
+            foto: users[0].foto || '',
+          });
           this.router.navigateByUrl('/menu');
           return;
         }

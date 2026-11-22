@@ -107,11 +107,20 @@
 
       <button
         type="button"
+        class="btn-concluir"
+        (click)="concluirPedido()"
+        [disabled]="p.status !== 'Pending' || acaoEmAndamento() !== null"
+      >
+        {{ acaoEmAndamento() === 'concluir' ? 'Concluindo...' : 'Concluir Pedido' }}
+      </button>
+
+      <button
+        type="button"
         class="btn-cancelar"
         (click)="cancelarPedido()"
-        [disabled]="p.status === 'Cancelled'"
+        [disabled]="p.status !== 'Pending' || acaoEmAndamento() !== null"
       >
-        Cancelar Pedido
+        {{ acaoEmAndamento() === 'cancelar' ? 'Cancelando...' : 'Cancelar Pedido' }}
       </button>
     </div>
   }

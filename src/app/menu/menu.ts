@@ -1,5 +1,6 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { PerfilService } from '../perfil/perfil.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,7 @@ export class Menu {
   private readonly mobileBreakpoint = window.matchMedia('(max-width: 1024px)');
   private readonly destroyRef = inject(DestroyRef);
   protected readonly menuOpen = signal(!this.mobileBreakpoint.matches);
-  protected readonly nomeUsuario = sessionStorage.getItem('usuario') || 'Usuário';
+  protected readonly perfil = inject(PerfilService).perfil;
 
   constructor() {
     const syncWithViewport = (event: MediaQueryListEvent) => {

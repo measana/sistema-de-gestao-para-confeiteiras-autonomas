@@ -8,6 +8,7 @@ import { Cliente } from '../model/cliente';
 import { PedidoService } from '../pedido/pedido.service';
 import { ClienteService } from '../cliente/cliente.service';
 import { ProdutoService } from '../produto/produto.service';
+import { PerfilService } from '../perfil/perfil.service';
 
 interface PedidoDashboard {
   id: number;
@@ -53,11 +54,10 @@ export class Dashboard implements OnInit {
   private readonly pedidoService = inject(PedidoService);
   private readonly clienteService = inject(ClienteService);
   private readonly produtoService = inject(ProdutoService);
+  protected readonly perfil = inject(PerfilService).perfil;
 
   pedidos: PedidoDashboard[] = [];
   clientes: Cliente[] = [];
-  nomeUsuario = sessionStorage.getItem('usuario') || 'Usuário';
-
   totalPedidos = 0;
   totalClientes = 0;
   faturamento = 0;

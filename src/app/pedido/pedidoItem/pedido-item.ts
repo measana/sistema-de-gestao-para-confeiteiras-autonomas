@@ -24,6 +24,7 @@ export class PedidoItem implements OnInit {
   protected readonly pedido = signal<Pedido | null>(null);
   protected readonly nomeCliente = signal('Carregando cliente...');
   protected readonly carregando = signal(true);
+  protected readonly acaoEmAndamento = signal<'concluir' | 'cancelar' | null>(null);
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -80,12 +81,7 @@ export class PedidoItem implements OnInit {
   protected cancelarPedido(): void {
     const pedido = this.pedido();
 
-    if (!pedido) {
-      return;
-    }
-
-    if (pedido.status === 'Cancelled') {
-      alert('Este pedido já está cancelado.');
+    if (!pedido || pedido.status !== 'Pending' || this.acaoEmAndamento()) {
       return;
     }
 
@@ -94,15 +90,46 @@ export class PedidoItem implements OnInit {
     }
 
     const pedidoAtualizado: Pedido = { ...pedido, status: 'Cancelled' };
+    this.acaoEmAndamento.set('cancelar');
 
     this.pedidoService.updatePedido(pedido.id, pedidoAtualizado).subscribe({
       next: (dados) => {
         this.pedido.set(dados);
+        this.acaoEmAndamento.set(null);
         alert('Pedido cancelado com sucesso!');
       },
       error: (erro) => {
         console.error('Erro ao cancelar pedido:', erro);
+        this.acaoEmAndamento.set(null);
         alert('Não foi possível cancelar o pedido.');
+      },
+    });
+  }
+
+  protected concluirPedido(): void {
+    const pedido = this.pedido();
+
+    if (!pedido || pedido.status !== 'Pending' || this.acaoEmAndamento()) {
+      return;
+    }
+
+    if (!confirm('Confirma a conclusão deste pedido?')) {
+      return;
+    }
+
+    const pedidoAtualizado: Pedido = { ...pedido, status: 'Delivered' };
+    this.acaoEmAndamento.set('concluir');
+
+    this.pedidoService.updatePedido(pedido.id, pedidoAtualizado).subscribe({
+      next: (dados) => {
+        this.pedido.set(dados);
+        this.acaoEmAndamento.set(null);
+        alert('Pedido concluído com sucesso!');
+      },
+      error: (erro) => {
+        console.error('Erro ao concluir pedido:', erro);
+        this.acaoEmAndamento.set(null);
+        alert('Não foi possível concluir o pedido.');
       },
     });
   }

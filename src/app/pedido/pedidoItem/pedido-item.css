@@ -148,11 +148,17 @@ button {
   color: white;
 }
 
+.btn-concluir {
+  background: #dcf5e5;
+  color: #18733a;
+}
+
 .btn-cancelar {
   background: #ffe5e5;
   color: #b00020;
 }
 
+.btn-concluir:disabled,
 .btn-cancelar:disabled {
   opacity: 0.5;
   cursor: not-allowed;

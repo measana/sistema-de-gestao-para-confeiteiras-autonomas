@@ -16,4 +16,8 @@ export class LoginService {
 
     return this.http.get<LoginUser[]>(this.usersUrl, { params });
   }
+
+  updateProfile(id: number, profile: Pick<LoginUser, 'nome' | 'foto'>): Observable<LoginUser> {
+    return this.http.patch<LoginUser>(`${this.usersUrl}/${id}`, profile);
+  }
 }

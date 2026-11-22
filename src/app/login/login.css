@@ -12,13 +12,17 @@
   position: relative;
   isolation: isolate;
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 611px);
+  align-items: center;
+  gap: clamp(36px, 5vw, 80px);
+  width: min(100%, 1600px);
   min-height: 100vh;
-  place-items: center;
+  margin: 0 auto;
   overflow: hidden;
-  padding: 24px;
-  background: #fff;
+  padding: clamp(32px, 5vw, 80px);
+  background: #f0e7dc;
   color: #f95268;
-  font-family: 'DM Sans', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .image-3 {
@@ -28,7 +32,105 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
+  opacity: 0.2;
+}
+
+.login-landing {
+  max-width: 620px;
+  padding: 24px 0;
+  color: #2c2527;
+  animation: landing-enter 650ms ease-out both;
+}
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 56px;
+  color: #2c2527;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.landing-brand img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  padding: 5px;
+  border: 1px solid rgb(44 37 39 / 14%);
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
+
+.landing-eyebrow {
+  margin: 0 0 18px;
+  color: #b94558;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.landing-copy h2 {
+  max-width: 600px;
+  margin: 0;
+  color: #30272a;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.landing-description {
+  max-width: 510px;
+  margin: 22px 0 0;
+  color: #675c5f;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.landing-points {
+  display: grid;
+  gap: 0;
+  max-width: 500px;
+  margin: 36px 0 0;
+  padding: 0;
+  border-top: 1px solid rgb(44 37 39 / 16%);
+  list-style: none;
+}
+
+.landing-points li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  border-bottom: 1px solid rgb(44 37 39 / 16%);
+  color: #403639;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.landing-points li span {
+  color: #b94558;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.landing-footer {
+  margin: 36px 0 0;
+  color: #766b6d;
+  font-size: 13px;
+}
+
+@keyframes landing-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .frame-3 {
@@ -71,7 +173,7 @@
   max-width: 500px;
   margin: 0;
   transform: translateX(-50%);
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: Arial, sans-serif;
   font-size: clamp(30px, 3.8vw, 45px);
   font-weight: 600;
   line-height: 1.08;
@@ -119,7 +221,7 @@
   outline: 0;
   background: transparent;
   color: #2c2527;
-  font: 400 17px 'DM Sans', sans-serif;
+  font: 400 17px Arial, sans-serif;
 }
 
 .password {
@@ -216,9 +318,88 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+@media (max-width: 1100px) {
+  .tela-login {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 28px;
+    padding: 40px 24px;
+  }
+
+  .login-landing {
+    width: min(700px, 100%);
+    max-width: 700px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .landing-brand {
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .landing-copy h2,
+  .landing-description,
+  .landing-points {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .landing-copy h2 {
+    max-width: 680px;
+    font-size: 42px;
+  }
+
+  .landing-points {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    text-align: left;
+  }
+}
+
 @media (max-width: 640px) {
   .tela-login {
+    align-content: start;
+    gap: 18px;
+    overflow: visible;
     padding: 16px;
+  }
+
+  .login-landing {
+    text-align: left;
+  }
+
+  .landing-brand {
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 17px;
+  }
+
+  .landing-brand img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .landing-eyebrow {
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+
+  .landing-copy h2 {
+    max-width: 440px;
+    font-size: 27px;
+    line-height: 1.12;
+  }
+
+  .landing-description {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .landing-points,
+  .landing-footer {
+    display: none;
   }
 
   .frame-3 {
@@ -279,6 +460,10 @@ button:focus-visible {
     padding: 12px;
   }
 
+  .landing-copy h2 {
+    font-size: 24px;
+  }
+
   .frame-3 {
     height: 660px;
   }
@@ -319,5 +504,11 @@ button:focus-visible {
     top: 528px;
     right: 18px;
     left: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-landing {
+    animation: none;
   }
 }

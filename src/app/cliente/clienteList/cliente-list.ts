@@ -41,6 +41,7 @@ class ConfirmDeleteClienteDialog {
 }
 
 @Component({
+  standalone: true,
   imports: [MatTableModule, RouterLink],
   selector: 'app-cliente-list',
   styleUrl: './cliente-list.css',

@@ -16,8 +16,8 @@
   --color-shadow: rgba(44, 37, 39, 0.25);
 
   /* Tipografia */
-  --font-poppins: "Poppins", sans-serif;
-  --font-inder: "Inder", sans-serif;
+  --font-poppins: Arial, sans-serif;
+  --font-inder: Arial, sans-serif;
   --font-size-title: 28px;
   --font-size-lg: 14px;
   --font-size-sm: 14px;

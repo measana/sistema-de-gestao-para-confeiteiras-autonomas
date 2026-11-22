@@ -5,4 +5,6 @@ export interface LoginCredentials {
 
 export interface LoginUser extends LoginCredentials {
 	id: number;
+	nome?: string;
+	foto?: string;
 }

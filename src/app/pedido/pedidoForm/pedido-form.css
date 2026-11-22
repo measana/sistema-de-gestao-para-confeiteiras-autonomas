@@ -95,6 +95,127 @@ select {
   color: white;
 }
 
+.cake-button {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  padding: 12px 35px;
+  border: 3px solid #ff4964;
+  border-radius: 8px;
+  background: #ff4964;
+  box-shadow: 0 0 0 #ff49648c;
+  color: #292326;
+  font-size: 17px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.cake-button__label {
+  position: relative;
+  z-index: 1;
+}
+
+.cupcake {
+  position: absolute;
+  z-index: -5;
+  width: 24px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0);
+  visibility: hidden;
+  filter: drop-shadow(0 0 0 #ff4964);
+}
+
+.cupcake-1 { top: 20%; left: 20%; width: 25px; transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96); }
+.cupcake-2 { top: 45%; left: 45%; width: 20px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
+.cupcake-3 { top: 40%; left: 40%; width: 16px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
+.cupcake-4 { top: 20%; left: 40%; width: 18px; transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01); }
+.cupcake-5 { top: 25%; left: 45%; width: 22px; transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01); }
+.cupcake-6 { top: 5%; left: 50%; width: 16px; transition: all 0.8s ease; }
+
+.sparkle {
+  position: absolute;
+  z-index: -5;
+  color: #ff4964;
+  font-size: 13px;
+  opacity: 0;
+  transform: scale(0);
+  text-shadow: 0 0 5px #ff4964;
+}
+
+.sparkle-1 { top: 20%; left: 30%; transition: all 0.8s ease; }
+.sparkle-2 { top: 40%; left: 50%; transition: all 1s ease; }
+.sparkle-3 { top: 30%; left: 45%; transition: all 0.7s ease; }
+.sparkle-4 { top: 50%; left: 40%; transition: all 0.9s ease; }
+.sparkle-5 { top: 10%; left: 50%; transition: all 0.6s ease; }
+.sparkle-6 { top: 40%; left: 55%; transition: all 0.8s ease; }
+
+.cake-button:hover:not(:disabled),
+.cake-button:focus-visible:not(:disabled) {
+  background: #292326;
+  color: #ff4964;
+  box-shadow: 0 0 25px #ff49648c;
+}
+
+.cake-button:hover:not(:disabled) .cupcake,
+.cake-button:focus-visible:not(:disabled) .cupcake {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  filter: drop-shadow(0 0 5px #ff4964);
+}
+
+.cake-button:hover:not(:disabled) .cupcake-1,
+.cake-button:focus-visible:not(:disabled) .cupcake-1 { top: -80%; left: -30%; transform: rotate(-20deg); }
+.cake-button:hover:not(:disabled) .cupcake-2,
+.cake-button:focus-visible:not(:disabled) .cupcake-2 { top: -35%; left: 10%; transform: rotate(15deg); }
+.cake-button:hover:not(:disabled) .cupcake-3,
+.cake-button:focus-visible:not(:disabled) .cupcake-3 { top: 65%; left: 25%; transform: rotate(-15deg); }
+.cake-button:hover:not(:disabled) .cupcake-4,
+.cake-button:focus-visible:not(:disabled) .cupcake-4 { top: 30%; left: 85%; transform: rotate(20deg); }
+.cake-button:hover:not(:disabled) .cupcake-5,
+.cake-button:focus-visible:not(:disabled) .cupcake-5 { top: 25%; left: 115%; transform: rotate(-20deg); }
+.cake-button:hover:not(:disabled) .cupcake-6,
+.cake-button:focus-visible:not(:disabled) .cupcake-6 { top: -50%; left: 65%; transform: rotate(15deg); }
+
+.cake-button:hover:not(:disabled) .sparkle,
+.cake-button:focus-visible:not(:disabled) .sparkle {
+  z-index: 3;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cake-button:hover:not(:disabled) .sparkle-1,
+.cake-button:focus-visible:not(:disabled) .sparkle-1 { top: -65%; left: -15%; }
+.cake-button:hover:not(:disabled) .sparkle-2,
+.cake-button:focus-visible:not(:disabled) .sparkle-2 { top: -45%; left: 35%; }
+.cake-button:hover:not(:disabled) .sparkle-3,
+.cake-button:focus-visible:not(:disabled) .sparkle-3 { top: 80%; left: 15%; }
+.cake-button:hover:not(:disabled) .sparkle-4,
+.cake-button:focus-visible:not(:disabled) .sparkle-4 { top: 60%; left: 90%; }
+.cake-button:hover:not(:disabled) .sparkle-5,
+.cake-button:focus-visible:not(:disabled) .sparkle-5 { top: -55%; left: 105%; }
+.cake-button:hover:not(:disabled) .sparkle-6,
+.cake-button:focus-visible:not(:disabled) .sparkle-6 { top: 85%; left: 65%; }
+
+.cake-button:focus-visible {
+  outline: 3px solid #292326;
+  outline-offset: 3px;
+}
+
+.cake-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cake-button,
+  .cupcake,
+  .sparkle {
+    transition: none;
+  }
+}
+
 .btn-cancelar {
   background: #eee;
   color: #333;
