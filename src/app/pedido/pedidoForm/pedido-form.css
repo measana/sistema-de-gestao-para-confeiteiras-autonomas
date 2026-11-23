@@ -1,113 +1,400 @@
+/* ==========================================================================
+   Tokens de design (mesmos do styles.css da lista de clientes)
+   ========================================================================== */
+
+:host {
+  display: block;
+
+  --color-surface: #ffffff;
+  --color-border-strong: #d4d4c5;
+  --color-line: #e6e2d3;
+  --color-text: #2c2527;
+  --color-muted: #6b5f52;
+  --color-primary: #df4055;
+  --color-primary-hover: #faaab5;
+  --color-dark: #181410;
+  --color-dark-soft: #2a221b;
+  --color-gild: #e7c6a0;
+  --color-ember: #f3a878;
+  --color-chip: #fdf8e9;
+  --color-brown: #6b3e26;
+  --color-danger: #c62828;
+  --color-shadow: rgba(44, 37, 39, 0.15);
+
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-archivo: 'Archivo', Arial, sans-serif;
+  --font-italic: 'Playfair Display', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 35px;
+
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+
+  /* Cartão escuro (archive card) */
+  --obra-ink: #181410;
+  --obra-carbon: #221c16;
+  --obra-walnut: #2a221b;
+  --obra-gild: #e7c6a0;
+  --obra-parchment: #f4e8d7;
+  --obra-bronze: #9d8a72;
+  --obra-bronze-dim: #7a6a57;
+  --obra-hairline: #3a2e24;
+  --obra-ember: #f3a878;
+  --obra-danger: #ff8f9c;
+  --obra-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 14px;
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-md);
+  caret-color: var(--obra-ember);
+  color-scheme: dark;
+  font-family: var(--font-archivo);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms var(--obra-ease),
+    box-shadow 240ms var(--obra-ease);
+}
+
+input:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--obra-parchment);
+  box-shadow: 0 0 0 1000px var(--obra-walnut) inset;
+  caret-color: var(--obra-parchment);
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
 .pedido-container {
-  padding: 30px;
-  max-width: 1100px;
-  margin: auto;
+  padding: 24px 32px 48px 48px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+  font-family: var(--font-archivo);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .header h1 {
-  margin-bottom: 5px;
+  margin: 0 0 8px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: normal;
 }
 
 .header p {
-  color: #777;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
+/* ==========================================================================
+   Seções (cards)
+   ========================================================================== */
+
 .card {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  color: var(--obra-gild);
+  background: var(--obra-carbon);
+  border: 1px solid var(--obra-hairline);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 0 rgba(255, 230, 200, 0.04) inset,
+    0 30px 60px -45px rgba(0, 0, 0, 0.7);
+  transition: border-color 320ms var(--obra-ease);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 80% at 12% 8%,
+    rgba(247, 222, 188, 0.06) 0%,
+    rgba(247, 222, 188, 0.02) 28%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:focus-within {
+  border-color: var(--obra-bronze-dim);
 }
 
 .card h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
+  color: var(--obra-gild);
+  font-family: var(--font-archivo);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
+
+/* ==========================================================================
+   Campos
+   ========================================================================== */
 
 label {
   display: block;
   margin-bottom: 8px;
+  color: var(--obra-bronze);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 input,
 select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
   margin-bottom: 15px;
-  box-sizing: border-box;
+  padding: 10px 14px;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-family: var(--font-archivo);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+
+input::placeholder {
+  color: var(--obra-bronze-dim);
+  font-family: var(--font-italic);
+  font-style: italic;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
+}
+
+/* ==========================================================================
+   Lista de produtos
+   ========================================================================== */
 
 .produtos-lista {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
+  gap: 16px;
+  margin-top: 8px;
 }
 
 .produto-card {
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--obra-hairline);
+  border-radius: 16px;
+  transition:
+    background 320ms var(--obra-ease),
+    border-color 320ms var(--obra-ease);
+}
+
+.produto-card:hover {
+  background: var(--obra-walnut);
+  border-color: var(--obra-bronze-dim);
 }
 
 .produto-card img {
   width: 100%;
   height: 150px;
   object-fit: cover;
-  border-radius: 6px;
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-md);
 }
 
 .produto-info h3 {
-  margin: 5px 0;
+  margin: 4px 0;
+  color: var(--obra-gild);
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .produto-info p {
-  color: #777;
-  margin: 5px 0;
+  margin: 4px 0;
+  color: var(--obra-bronze);
+  font-size: 13px;
 }
 
+.produto-info strong {
+  color: var(--obra-parchment);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
 .btn-adicionar,
-.btn-salvar,
 .btn-cancelar,
 .btn-remover {
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
+  color: var(--obra-danger);
+  background: transparent;
+  border: 1px solid rgba(255, 143, 156, 0.45);
 }
 
-.btn-adicionar,
-.btn-salvar {
-  background: #F95268;
-  color: white;
+/* Primário */
+
+.btn-adicionar {
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 1px solid rgba(243, 168, 120, 0.35);
 }
+
+.btn-adicionar:hover {
+  color: var(--obra-ink);
+  background: var(--obra-gild);
+  border-color: var(--obra-gild);
+  transform: translateY(0) scale(0.97);
+}
+
+/* Secundário */
+
+.btn-cancelar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  min-height: 36px;
+  padding: 0 14px;
+  color: #f4e8d7;
+  background: var(--color-dark-soft);
+  border: 1px solid var(--color-dark-soft);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
+}
+
+.btn-cancelar:hover {
+  color: var(--color-dark-soft);
+  background: var(--color-gild);
+  border-color: var(--color-gild);
+  transform: translateY(-2px);
+}
+
+.btn-cancelar:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.contador {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: right;
+}
+
+/* Perigo */
+
+.btn-remover {
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid rgba(223, 64, 85, 0.45);
+}
+
+.btn-remover:hover {
+  color: var(--obra-ink);
+  background: var(--obra-danger);
+  border-color: var(--obra-danger);
+}
+
+.btn-adicionar:active,
+.btn-cancelar:active,
+.btn-remover:active {
+  transform: scale(0.98);
+}
+
+.btn-adicionar:focus-visible,
+.btn-cancelar:focus-visible,
+.btn-remover:focus-visible {
+  outline: 2px solid var(--obra-ember);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Botão "Finalizar pedido" (animação de cupcakes)
+   ========================================================================== */
 
 .cake-button {
+  --cake-color: var(--color-primary);
+  --cake-glow: rgba(223, 64, 85, 0.55);
+  --cake-dark: var(--color-dark-soft);
+
   position: relative;
   isolation: isolate;
   overflow: visible;
-  padding: 12px 35px;
-  border: 3px solid #ff4964;
-  border-radius: 8px;
-  background: #ff4964;
-  box-shadow: 0 0 0 #ff49648c;
-  color: #292326;
-  font-size: 17px;
-  font-weight: 600;
+  min-height: 44px;
+  padding: 0 15px;
+  color: #ffffff;
+  background: var(--cake-color);
+  border: 1px solid rgba(243, 168, 120, 0.35);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 transparent;
+  font-family: var(--font-archivo);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-left: 700px;
+  margin-right: 15px;
 }
 
 .cake-button__label {
@@ -123,38 +410,92 @@ select {
   opacity: 0;
   transform: scale(0);
   visibility: hidden;
-  filter: drop-shadow(0 0 0 #ff4964);
+  filter: drop-shadow(0 0 0 var(--cake-color));
 }
 
-.cupcake-1 { top: 20%; left: 20%; width: 25px; transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96); }
-.cupcake-2 { top: 45%; left: 45%; width: 20px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
-.cupcake-3 { top: 40%; left: 40%; width: 16px; transition: all 1s cubic-bezier(0, 0.4, 0, 1.01); }
-.cupcake-4 { top: 20%; left: 40%; width: 18px; transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01); }
-.cupcake-5 { top: 25%; left: 45%; width: 22px; transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01); }
-.cupcake-6 { top: 5%; left: 50%; width: 16px; transition: all 0.8s ease; }
+.cupcake-1 {
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+.cupcake-2 {
+  top: 45%;
+  left: 45%;
+  width: 20px;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+.cupcake-3 {
+  top: 40%;
+  left: 40%;
+  width: 16px;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+.cupcake-4 {
+  top: 20%;
+  left: 40%;
+  width: 18px;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+.cupcake-5 {
+  top: 25%;
+  left: 45%;
+  width: 22px;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+.cupcake-6 {
+  top: 5%;
+  left: 50%;
+  width: 16px;
+  transition: all 0.8s ease;
+}
 
 .sparkle {
   position: absolute;
   z-index: -5;
-  color: #ff4964;
+  color: var(--cake-color);
   font-size: 13px;
   opacity: 0;
   transform: scale(0);
-  text-shadow: 0 0 5px #ff4964;
+  text-shadow: 0 0 5px var(--cake-color);
 }
 
-.sparkle-1 { top: 20%; left: 30%; transition: all 0.8s ease; }
-.sparkle-2 { top: 40%; left: 50%; transition: all 1s ease; }
-.sparkle-3 { top: 30%; left: 45%; transition: all 0.7s ease; }
-.sparkle-4 { top: 50%; left: 40%; transition: all 0.9s ease; }
-.sparkle-5 { top: 10%; left: 50%; transition: all 0.6s ease; }
-.sparkle-6 { top: 40%; left: 55%; transition: all 0.8s ease; }
+.sparkle-1 {
+  top: 20%;
+  left: 30%;
+  transition: all 0.8s ease;
+}
+.sparkle-2 {
+  top: 40%;
+  left: 50%;
+  transition: all 1s ease;
+}
+.sparkle-3 {
+  top: 30%;
+  left: 45%;
+  transition: all 0.7s ease;
+}
+.sparkle-4 {
+  top: 50%;
+  left: 40%;
+  transition: all 0.9s ease;
+}
+.sparkle-5 {
+  top: 10%;
+  left: 50%;
+  transition: all 0.6s ease;
+}
+.sparkle-6 {
+  top: 40%;
+  left: 55%;
+  transition: all 0.8s ease;
+}
 
 .cake-button:hover:not(:disabled),
 .cake-button:focus-visible:not(:disabled) {
-  background: #292326;
-  color: #ff4964;
-  box-shadow: 0 0 25px #ff49648c;
+  color: var(--cake-color);
+  background: var(--cake-dark);
+  box-shadow: 0 0 25px var(--cake-glow);
 }
 
 .cake-button:hover:not(:disabled) .cupcake,
@@ -162,21 +503,45 @@ select {
   z-index: 2;
   opacity: 1;
   visibility: visible;
-  filter: drop-shadow(0 0 5px #ff4964);
+  filter: drop-shadow(0 0 5px var(--cake-color));
 }
 
 .cake-button:hover:not(:disabled) .cupcake-1,
-.cake-button:focus-visible:not(:disabled) .cupcake-1 { top: -80%; left: -30%; transform: rotate(-20deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-1 {
+  top: -80%;
+  left: -30%;
+  transform: rotate(-20deg);
+}
 .cake-button:hover:not(:disabled) .cupcake-2,
-.cake-button:focus-visible:not(:disabled) .cupcake-2 { top: -35%; left: 10%; transform: rotate(15deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-2 {
+  top: -35%;
+  left: 10%;
+  transform: rotate(15deg);
+}
 .cake-button:hover:not(:disabled) .cupcake-3,
-.cake-button:focus-visible:not(:disabled) .cupcake-3 { top: 65%; left: 25%; transform: rotate(-15deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-3 {
+  top: 65%;
+  left: 25%;
+  transform: rotate(-15deg);
+}
 .cake-button:hover:not(:disabled) .cupcake-4,
-.cake-button:focus-visible:not(:disabled) .cupcake-4 { top: 30%; left: 85%; transform: rotate(20deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-4 {
+  top: 30%;
+  left: 85%;
+  transform: rotate(20deg);
+}
 .cake-button:hover:not(:disabled) .cupcake-5,
-.cake-button:focus-visible:not(:disabled) .cupcake-5 { top: 25%; left: 115%; transform: rotate(-20deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-5 {
+  top: 25%;
+  left: 115%;
+  transform: rotate(-20deg);
+}
 .cake-button:hover:not(:disabled) .cupcake-6,
-.cake-button:focus-visible:not(:disabled) .cupcake-6 { top: -50%; left: 65%; transform: rotate(15deg); }
+.cake-button:focus-visible:not(:disabled) .cupcake-6 {
+  top: -50%;
+  left: 65%;
+  transform: rotate(15deg);
+}
 
 .cake-button:hover:not(:disabled) .sparkle,
 .cake-button:focus-visible:not(:disabled) .sparkle {
@@ -186,20 +551,38 @@ select {
 }
 
 .cake-button:hover:not(:disabled) .sparkle-1,
-.cake-button:focus-visible:not(:disabled) .sparkle-1 { top: -65%; left: -15%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-1 {
+  top: -65%;
+  left: -15%;
+}
 .cake-button:hover:not(:disabled) .sparkle-2,
-.cake-button:focus-visible:not(:disabled) .sparkle-2 { top: -45%; left: 35%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-2 {
+  top: -45%;
+  left: 35%;
+}
 .cake-button:hover:not(:disabled) .sparkle-3,
-.cake-button:focus-visible:not(:disabled) .sparkle-3 { top: 80%; left: 15%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-3 {
+  top: 80%;
+  left: 15%;
+}
 .cake-button:hover:not(:disabled) .sparkle-4,
-.cake-button:focus-visible:not(:disabled) .sparkle-4 { top: 60%; left: 90%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-4 {
+  top: 60%;
+  left: 90%;
+}
 .cake-button:hover:not(:disabled) .sparkle-5,
-.cake-button:focus-visible:not(:disabled) .sparkle-5 { top: -55%; left: 105%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-5 {
+  top: -55%;
+  left: 105%;
+}
 .cake-button:hover:not(:disabled) .sparkle-6,
-.cake-button:focus-visible:not(:disabled) .sparkle-6 { top: 85%; left: 65%; }
+.cake-button:focus-visible:not(:disabled) .sparkle-6 {
+  top: 85%;
+  left: 65%;
+}
 
 .cake-button:focus-visible {
-  outline: 3px solid #292326;
+  outline: 2px solid var(--color-brown);
   outline-offset: 3px;
 }
 
@@ -216,74 +599,129 @@ select {
   }
 }
 
-.btn-cancelar {
-  background: #eee;
-  color: #333;
-}
-
-.btn-remover {
-  background: #ffe5e5;
-  color: #b00020;
-}
+/* ==========================================================================
+   Resumo / carrinho
+   ========================================================================== */
 
 .carrinho-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
+  gap: 16px;
+  padding: 16px 0;
+  color: var(--obra-parchment);
+  border-bottom: 1px solid var(--obra-hairline);
 }
 
 .item-info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.item-info span {
+  color: var(--obra-bronze);
+  font-size: 13px;
 }
 
 .quantidade {
   display: flex;
   align-items: center;
   gap: 12px;
+  font-weight: 600;
 }
 
 .quantidade button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  color: var(--obra-gild);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
   cursor: pointer;
+  transition:
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
+}
+
+.quantidade button:hover {
+  background: var(--obra-ink);
+  border-color: var(--obra-bronze-dim);
+}
+
+.quantidade button:active {
+  transform: scale(0.95);
+}
+
+.quantidade button:focus-visible {
+  outline: 2px solid var(--obra-ember);
+  outline-offset: 2px;
+}
+
+.carrinho-vazio {
+  padding: 16px 0;
+  color: var(--obra-bronze);
+  font-family: var(--font-italic);
+  font-size: 15px;
+  font-style: italic;
 }
 
 .total {
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
-  margin-top: 25px;
+  margin-top: 24px;
+  color: var(--obra-parchment);
+  font-size: 18px;
+}
+
+.total strong {
+  color: var(--obra-gild);
 }
 
 .acoes {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 30px;
+  margin-top: 8px;
 }
 
-.carrinho-vazio {
-  color: #777;
-  padding: 15px 0;
-}
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
 
-@media (max-width: 650px) {
+@media (max-width: 1024px) {
   .pedido-container {
-    padding: 15px;
+    padding: 24px 32px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pedido-container {
+    margin: 0 12px;
+    padding: 24px 20px 32px;
   }
 
   .header {
     align-items: flex-start;
-    gap: 15px;
   }
 
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 650px) {
   .carrinho-item {
     flex-wrap: wrap;
+  }
+
+  .acoes .cake-button {
+    width: 100%;
   }
 }

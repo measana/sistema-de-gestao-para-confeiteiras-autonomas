@@ -1,56 +1,401 @@
+/* ==========================================================================
+   Tokens de design (mesmos do styles.css da lista de clientes)
+   ========================================================================== */
+
 :host {
   display: block;
   min-height: 100%;
-  background: #fbf8f6;
-  color: #30272a;
+
+  --color-surface: #ffffff;
+  --color-text: #2c2527;
+  --color-muted: #6b5f52;
+  --color-primary: #df4055;
+  --color-primary-hover: #faaab5;
+  --color-shadow: rgba(44, 37, 39, 0.15);
+
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-archivo: 'Archivo', Arial, sans-serif;
+  --font-italic: 'Playfair Display', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-xl: 35px;
+
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+
+  /* Cartão escuro (archive card) */
+  --obra-ink: #181410;
+  --obra-carbon: #221c16;
+  --obra-walnut: #2a221b;
+  --obra-gild: #e7c6a0;
+  --obra-parchment: #f4e8d7;
+  --obra-bronze: #9d8a72;
+  --obra-bronze-dim: #7a6a57;
+  --obra-hairline: #3a2e24;
+  --obra-ember: #f3a878;
+  --obra-danger: #ff8f9c;
+  --obra-success: #8fe0b0;
+  --obra-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
 
 .profile-page {
-  width: min(100% - 48px, 920px);
-  margin: 0 auto;
-  padding: 64px 0 80px;
+  padding: 24px 32px 48px 48px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+  font-family: var(--font-archivo);
 }
 
-.profile-page__header { margin-bottom: 36px; }
-.profile-page__eyebrow { margin: 0 0 8px; color: #c8455c; font-size: 13px; font-weight: 700; text-transform: uppercase; }
-.profile-page__header h1 { margin: 0; font-size: 32px; line-height: 1.2; }
-.profile-page__header > p:last-child { margin: 10px 0 0; color: #71676a; }
+.profile-page__header {
+  margin-bottom: 32px;
+}
+
+.profile-page__eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.profile-page__header h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: normal;
+}
+
+.profile-page__header > p:last-child {
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Cartão do formulário (archive card)
+   ========================================================================== */
 
 .profile-form {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   max-width: 680px;
-  padding: 28px;
-  border: 1px solid #e8dddc;
-  border-radius: 8px;
-  background: #fff;
+  padding: 2rem;
+  color: var(--obra-gild);
+  background: var(--obra-carbon);
+  border: 1px solid var(--obra-hairline);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 0 rgba(255, 230, 200, 0.04) inset,
+    0 30px 60px -45px rgba(0, 0, 0, 0.7);
+  transition: border-color 320ms var(--obra-ease);
 }
 
-.photo-section { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid #eee6e4; }
-.photo-section__preview { display: grid; width: 104px; height: 104px; flex: 0 0 104px; place-items: center; overflow: hidden; border-radius: 50%; background: #f8dce0; color: #923848; font-size: 36px; font-weight: 700; }
-.photo-section__preview img { width: 100%; height: 100%; object-fit: cover; }
-.photo-section__controls h2 { margin: 0; font-size: 18px; }
-.photo-section__controls p { margin: 6px 0 14px; color: #71676a; font-size: 14px; }
-.photo-button { display: inline-flex; min-height: 40px; align-items: center; padding: 0 14px; border: 1px solid #c8455c; border-radius: 4px; color: #a52f46; cursor: pointer; font-size: 14px; font-weight: 600; }
-.photo-button:hover { background: #fff1f2; }
+.profile-form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 80% at 12% 8%,
+    rgba(247, 222, 188, 0.06) 0%,
+    rgba(247, 222, 188, 0.02) 28%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
 
-#profile-photo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
-#profile-photo:focus-visible + .photo-button { outline: 2px solid #c8455c; outline-offset: 3px; }
+.profile-form > * {
+  position: relative;
+  z-index: 1;
+}
 
-.form-field { display: grid; gap: 8px; max-width: 440px; margin-top: 28px; }
-.form-field label { font-size: 14px; font-weight: 600; }
-.form-field input { width: 100%; height: 44px; padding: 0 12px; border: 1px solid #cfc3c2; border-radius: 4px; color: #30272a; font: inherit; }
-.form-field input:focus-visible { border-color: #c8455c; outline: 2px solid #f6c4cc; outline-offset: 1px; }
-.form-message { margin: 16px 0 0; font-size: 14px; }
-.form-message--error { color: #a12636; }
-.form-message--success { color: #28714d; }
-.profile-form__footer { display: flex; justify-content: flex-end; margin-top: 32px; padding-top: 20px; border-top: 1px solid #eee6e4; }
-.save-button { min-height: 44px; padding: 0 18px; border: 0; border-radius: 4px; background: #c8455c; color: #fff; cursor: pointer; font: inherit; font-weight: 700; }
-.save-button:hover:not(:disabled) { background: #a93249; }
-.save-button:disabled { cursor: wait; opacity: 0.65; }
+.profile-form:focus-within {
+  border-color: var(--obra-bronze-dim);
+}
+
+/* ==========================================================================
+   Foto
+   ========================================================================== */
+
+.photo-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--obra-hairline);
+}
+
+.photo-section__preview {
+  display: grid;
+  place-items: center;
+  flex: 0 0 104px;
+  width: 104px;
+  height: 104px;
+  overflow: hidden;
+  color: var(--obra-gild);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
+  border-radius: 50%;
+  font-family: var(--font-italic);
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.photo-section__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-section__controls h2 {
+  margin: 0;
+  color: var(--obra-gild);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.photo-section__controls p {
+  margin: 6px 0 14px;
+  color: var(--obra-bronze);
+  font-size: 14px;
+}
+
+.photo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  color: var(--obra-gild);
+  background: transparent;
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
+}
+
+.photo-button:hover {
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border-color: var(--obra-bronze-dim);
+}
+
+.photo-button:active {
+  transform: scale(0.98);
+}
+
+#profile-photo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+#profile-photo:focus-visible + .photo-button {
+  outline: 2px solid var(--obra-ember);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Campos
+   ========================================================================== */
+
+.form-field {
+  display: grid;
+  gap: 8px;
+  max-width: 440px;
+  margin-top: 28px;
+}
+
+.form-field label {
+  color: var(--obra-bronze);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-md);
+  caret-color: var(--obra-ember);
+  color-scheme: dark;
+  font-family: var(--font-archivo);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms var(--obra-ease),
+    box-shadow 240ms var(--obra-ease);
+}
+
+.form-field input::placeholder {
+  color: var(--obra-bronze-dim);
+  font-family: var(--font-italic);
+  font-style: italic;
+}
+
+.form-field input:focus,
+.form-field input:focus-visible {
+  outline: none;
+  border-color: var(--obra-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
+}
+
+.form-field input:-webkit-autofill {
+  -webkit-text-fill-color: var(--obra-parchment);
+  box-shadow: 0 0 0 1000px var(--obra-walnut) inset;
+  caret-color: var(--obra-parchment);
+}
+
+.form-message {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.form-message--error {
+  color: var(--obra-danger);
+}
+
+.form-message--success {
+  color: var(--obra-success);
+}
+
+/* ==========================================================================
+   Rodapé e botão salvar
+   ========================================================================== */
+
+.profile-form__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--obra-hairline);
+}
+
+.save-button {
+  min-width: 96px;
+  min-height: 36px;
+  padding: 0 14px;
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 1px solid rgba(243, 168, 120, 0.35);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease,
+    opacity 240ms ease;
+}
+
+.save-button:hover:not(:disabled) {
+  color: var(--obra-ink);
+  background: var(--obra-gild);
+  border-color: var(--obra-gild);
+  transform: translateY(0) scale(0.97);
+}
+
+.save-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.save-button:focus-visible {
+  outline: 2px solid var(--obra-ember);
+  outline-offset: 2px;
+}
+
+.save-button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .profile-page {
+    padding: 24px 32px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    margin: 0 12px;
+    padding: 24px 20px 32px;
+  }
+}
 
 @media (max-width: 600px) {
-  .profile-page { width: min(100% - 32px, 920px); padding: 36px 0 48px; }
-  .profile-page__header h1 { font-size: 27px; }
-  .profile-form { padding: 20px 16px; }
-  .photo-section { align-items: flex-start; gap: 16px; }
-  .photo-section__preview { width: 76px; height: 76px; flex-basis: 76px; font-size: 28px; }
+  .profile-page__header h1 {
+    font-size: 24px;
+  }
+
+  .profile-form {
+    padding: 20px 16px;
+  }
+
+  .photo-section {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .photo-section__preview {
+    flex-basis: 76px;
+    width: 76px;
+    height: 76px;
+    font-size: 28px;
+  }
+
+  .save-button {
+    width: 100%;
+  }
 }

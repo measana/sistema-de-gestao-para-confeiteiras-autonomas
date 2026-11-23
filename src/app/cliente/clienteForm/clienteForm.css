@@ -1,7 +1,61 @@
+/* ==========================================================================
+   Tokens de design (mesmos do styles.css da lista de clientes)
+   ========================================================================== */
+
+:host {
+  display: block;
+
+  --color-surface: #ffffff;
+  --color-border-strong: #d4d4c5;
+  --color-line: #e6e2d3;
+  --color-text: #2c2527;
+  --color-muted: #6b5f52;
+  --color-primary: #df4055;
+  --color-primary-hover: #faaab5;
+  --color-dark: #181410;
+  --color-dark-soft: #2a221b;
+  --color-gild: #e7c6a0;
+  --color-ember: #f3a878;
+  --color-chip: #fdf8e9;
+  --color-brown: #6b3e26;
+  --color-danger: #c62828;
+  --color-shadow: rgba(44, 37, 39, 0.15);
+
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-archivo: 'Archivo', Arial, sans-serif;
+  --font-italic: 'Playfair Display', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 35px;
+
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
 .cliente-page {
-  min-height: 100vh;
-  padding: 40px;
-  background: transparent;
+  padding: 24px 32px 48px 48px;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+  font-family: var(--font-archivo);
 }
 
 .cliente-header {
@@ -9,27 +63,36 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .cliente-header h1 {
   margin: 0 0 8px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
   font-size: 28px;
-  color: #2c2527;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: normal;
 }
 
 .cliente-header p {
   margin: 0;
-  color: #777;
+  color: var(--color-muted);
+  font-size: 14px;
 }
+
+/* ==========================================================================
+   Formulário
+   ========================================================================== */
 
 .form-card {
   max-width: 760px;
-  padding: 35px;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  padding: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 60px -45px rgba(44, 37, 39, 0.25);
 }
 
 .cliente-form {
@@ -40,24 +103,33 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
   margin-bottom: 22px;
 }
 
 .form-group label {
-  font-weight: 600;
-  color: #444;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-family: var(--font-archivo);
   font-size: 14px;
-  box-sizing: border-box;
-  font: inherit;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .form-group textarea {
@@ -65,16 +137,29 @@
   resize: vertical;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #7a6a57;
+  font-family: var(--font-italic);
+  font-style: italic;
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
-  outline: 2px solid #f95268;
-  border-color: transparent;
+  outline: none;
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
 }
 
 .error-message {
-  color: #c62828;
   margin: 0 0 20px;
+  color: var(--color-danger);
+  font-size: 14px;
 }
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
 
 .form-actions {
   display: flex;
@@ -85,23 +170,37 @@
 
 .btn-cancel,
 .btn-save {
-  padding: 12px 25px;
-  border-radius: 8px;
+  min-width: 96px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
-  font-size: 14px;
-  transition: opacity 0.2s ease;
-}
-
-.btn-cancel {
-  background: white;
-  border: 1px solid #ddd;
-  color: #333;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease,
+    opacity 240ms ease;
 }
 
 .btn-save {
-  background: #f95268;
-  color: white;
-  border: none;
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 1px solid rgba(243, 168, 120, 0.35);
+}
+
+.btn-save:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-save:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .btn-save:disabled {
@@ -109,9 +208,41 @@
   cursor: not-allowed;
 }
 
+.btn-cancel {
+  color: var(--color-dark-soft);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+}
+
+.btn-cancel:hover {
+  background: var(--color-chip);
+  border-color: var(--color-gild);
+}
+
+.btn-cancel:active {
+  transform: scale(0.98);
+}
+
+.btn-cancel:focus-visible,
+.btn-save:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .cliente-page {
+    padding: 24px 32px 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .cliente-page {
-    padding: 20px;
+    margin: 0 12px;
+    padding: 24px 20px 32px;
   }
 
   .cliente-header {
@@ -119,74 +250,16 @@
     align-items: flex-start;
   }
 
+  .cliente-header h1 {
+    font-size: 24px;
+  }
+
   .form-card {
     padding: 20px;
   }
-}
 
-
-.form__button--submit .form__button-label {
-  top: -6px;
-  left: 1px;
-}
-
-/* ==========================================================================
-   Tablet (até 1024px)
-   ========================================================================== */
-@media (max-width: 1024px) {
-  .app {
-    display: block;
-    padding: 0 0 16px;
-  }
-
-  .screen {
-    margin: 0 16px;
-  }
-
-  .screen__header {
-    padding: 40px 32px 0;
-  }
-
-  .card {
-    margin: 48px 24px 40px;
-  }
-
-  .form {
-    padding: 40px 48px 40px;
-  }
-
-  .form__actions {
-    column-gap: 40px;
-  }
-}
-
-/* ==========================================================================
-   Mobile (até 768px)
-   ========================================================================== */
-@media (max-width: 768px) {
-  .screen {
-    margin: 0 12px;
-  }
-
-  .screen__header {
-    grid-template-rows: auto;
-    padding: 32px 20px 0;
-  }
-
-  .screen__title {
-    height: auto;
-    min-height: 45px;
-  }
-
-  .card {
-    margin: 32px 12px 32px;
-  }
-
-  .form {
-    padding: 24px 16px;
-  }
-
-  .form__actions {
-    column-gap: 16px;
+  .form-actions .btn-cancel,
+  .form-actions .btn-save {
+    flex: 1;
   }
 }

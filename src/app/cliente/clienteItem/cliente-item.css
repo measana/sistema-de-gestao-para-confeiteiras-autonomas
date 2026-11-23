@@ -1,110 +1,235 @@
+/* ==========================================================================
+   Tokens de design (mesmos do styles.css da lista de clientes)
+   ========================================================================== */
+
+:host {
+  display: block;
+
+  --color-surface: #ffffff;
+  --color-border-strong: #d4d4c5;
+  --color-line: #e6e2d3;
+  --color-text: #2c2527;
+  --color-muted: #6b5f52;
+  --color-primary: #df4055;
+  --color-primary-hover: #faaab5;
+  --color-dark: #181410;
+  --color-dark-soft: #2a221b;
+  --color-gild: #e7c6a0;
+  --color-ember: #f3a878;
+  --color-chip: #fdf8e9;
+  --color-brown: #6b3e26;
+  --color-danger: #c62828;
+  --color-shadow: rgba(44, 37, 39, 0.15);
+
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-archivo: 'Archivo', Arial, sans-serif;
+  --font-italic: 'Playfair Display', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 35px;
+
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
 .cliente-item {
-	min-height: 100vh;
-	margin: 0;
-	padding: 40px;
-	color: #2c2527;
-	background: transparent;
-	font-size: 14px;
+  margin: 0;
+  padding: 24px 32px 48px 48px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+  font-family: var(--font-archivo);
+  font-size: 14px;
 }
 
 .cliente-item__header {
-	margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .cliente-item__header h1 {
-	margin: 0 0 8px;
-	font-size: 28px;
-	font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: normal;
 }
 
 .cliente-item__header p {
-	margin: 0;
-	color: #777;
+  margin: 0;
+  color: var(--color-muted);
 }
 
+/* ==========================================================================
+   Formulário
+   ========================================================================== */
+
 .cliente-item__form {
-	display: flex;
-	flex-direction: column;
-	max-width: 760px;
-	padding: 35px;
-	background: #fff;
-	border: 1px solid #eee;
-	border-radius: 12px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+  padding: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 60px -45px rgba(44, 37, 39, 0.25);
 }
 
 .cliente-item__form label {
-	margin-bottom: 9px;
-	color: #444;
-	font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .cliente-item__form input,
 .cliente-item__form textarea {
-	width: 100%;
-	margin-bottom: 22px;
-	padding: 13px;
-	color: inherit;
-	background: #fff;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	font: inherit;
+  width: 100%;
+  margin-bottom: 22px;
+  padding: 10px 14px;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-family: var(--font-archivo);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .cliente-item__form textarea {
-	min-height: 140px;
-	resize: vertical;
+  min-height: 140px;
+  resize: vertical;
 }
 
-.cliente-item__form input:focus-visible,
-.cliente-item__form textarea:focus-visible,
-.cliente-item__button:focus-visible {
-	outline: 2px solid #f95268;
-	border-color: transparent;
+.cliente-item__form input::placeholder,
+.cliente-item__form textarea::placeholder {
+  color: #7a6a57;
+  font-family: var(--font-italic);
+  font-style: italic;
 }
 
-.cliente-item__actions {
-	display: flex;
-	justify-content: flex-end;
-	gap: 12px;
-	margin-top: 16px;
-}
-
-.cliente-item__button {
-	padding: 12px 25px;
-	border-radius: 8px;
-	font: inherit;
-	cursor: pointer;
-}
-
-.cliente-item__button:disabled {
-	cursor: not-allowed;
-	opacity: 0.6;
-}
-
-.cliente-item__button--cancel {
-	color: #333;
-	background: #fff;
-	border: 1px solid #ddd;
-}
-
-.cliente-item__button--save {
-	color: #fff;
-	background: #f95268;
-	border: 0;
+.cliente-item__form input:focus,
+.cliente-item__form textarea:focus {
+  outline: none;
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
 }
 
 .cliente-item__message {
-	margin: 0 0 20px;
-	color: #c62828;
+  margin: 0 0 20px;
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+.cliente-item__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cliente-item__button {
+  min-width: 96px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease,
+    opacity 240ms ease;
+}
+
+.cliente-item__button--save {
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 1px solid rgba(243, 168, 120, 0.35);
+}
+
+.cliente-item__button--save:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(0) scale(0.97);
+}
+
+.cliente-item__button--cancel {
+  color: var(--color-dark-soft);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+}
+
+.cliente-item__button--cancel:hover:not(:disabled) {
+  background: var(--color-chip);
+  border-color: var(--color-gild);
+}
+
+.cliente-item__button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.cliente-item__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cliente-item__button:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .cliente-item {
+    padding: 24px 32px 40px;
+  }
 }
 
 @media (max-width: 768px) {
-	.cliente-item {
-		padding: 20px;
-	}
+  .cliente-item {
+    margin: 0 12px;
+    padding: 24px 20px 32px;
+  }
 
-	.cliente-item__form {
-		padding: 20px;
-	}
+  .cliente-item__header h1 {
+    font-size: 24px;
+  }
+
+  .cliente-item__form {
+    padding: 20px;
+  }
+
+  .cliente-item__actions .cliente-item__button {
+    flex: 1;
+  }
 }

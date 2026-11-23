@@ -4,8 +4,6 @@
       <h1>Novo Pedido</h1>
       <p>Preencha as informações para registrar um novo pedido.</p>
     </div>
-
-    <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
   </div>
 
   <!-- Seleção do cliente -->
@@ -118,6 +116,7 @@
   </section>
 
   <div class="acoes">
+     <button type="button" class="btn-cancelar" (click)="cancelar()">Cancelar</button>
     <button type="button" class="btn-salvar cake-button" [disabled]="isSaving()" (click)="salvarPedido()">
       <span class="cake-button__label">{{ isSaving() ? 'Salvando...' : 'Finalizar Pedido' }}</span>
       <img class="cupcake cupcake-1" src="https://www.svgrepo.com/download/402676/shortcake.svg" alt="" aria-hidden="true" />

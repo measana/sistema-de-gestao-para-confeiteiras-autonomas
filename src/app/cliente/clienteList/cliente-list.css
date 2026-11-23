@@ -1,6 +1,7 @@
 /* ==========================================================================
-   Tokens de design (extraídos do Figma)
+   Tokens de design
    ========================================================================== */
+
 :host {
   /* Cores */
   --color-white: #ffffff;
@@ -12,18 +13,18 @@
   --color-accent: #f95268;
   --color-brown: #6b3e26;
   --color-chip: #fdf8e9;
-  --color-chip-delete: rgb(255, 100, 100);
-  --color-shadow: rgba(44, 37, 39, 0.25);
+  --color-chip-delete: #f95268;
+  --color-shadow: rgba(44, 37, 39, 0.15);
 
   /* Tipografia */
-  --font-poppins: Arial, sans-serif;
-  --font-inder: Arial, sans-serif;
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-inder: 'Inder', Arial, sans-serif;
   --font-size-title: 28px;
   --font-size-lg: 14px;
   --font-size-sm: 14px;
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
-  --letter-spacing: 0.01em; /* 0.48px em 48px · 0.2px em 20px · 0.15px em 15px */
+  --letter-spacing: 0.01em;
 
   /* Raios */
   --radius-sm: 9px;
@@ -31,43 +32,27 @@
   --radius-lg: 16px;
   --radius-xl: 35px;
 
-  /* Espaçamentos (layout desktop 1806 × 1210) */
-  --space-header-top: 24.5px;
-  --space-header-left: 84px;
-  --space-header-right: 43px;
-  --space-header-gap: 44px;
-  --space-table-top: 56px;
-  --space-table-left: 63px;
-  --space-table-right: 28px;
-  --space-table-bottom: 71.5px;
+  /* Espaçamentos */
+  --space-header-top: 24px;
+  --space-header-left: 48px;
+  --space-header-right: 32px;
+  --space-table-top: 48px;
+  --space-table-left: 48px;
+  --space-table-right: 32px;
+  --space-table-bottom: 48px;
 
   /* Sombras */
-  --shadow-screen: 5px 4px 8.5px 0 var(--color-shadow);
-
-  /* Transições */
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
 }
 
 /* ==========================================================================
    Reset mínimo
    ========================================================================== */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background: var(--color-white);
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-weight: var(--font-weight-regular);
-  line-height: normal;
-}
-
-img {
-  display: block;
-  max-width: none;
 }
 
 button,
@@ -76,30 +61,10 @@ input {
   letter-spacing: inherit;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-
-.navbar__link {
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-lg);
-  letter-spacing: var(--letter-spacing);
-  text-decoration: none;
-}
-
 /* ==========================================================================
    Tela principal
    ========================================================================== */
+
 .screen {
   min-width: 0;
   background: var(--color-surface);
@@ -111,10 +76,9 @@ input {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-rows: auto;
-  grid-template-areas:
-    "title search add";
+  grid-template-areas: 'title search add';
   align-items: center;
-  column-gap: 16px;
+  column-gap: 24px;
   padding: var(--space-header-top) var(--space-header-right) 0 var(--space-header-left);
 }
 
@@ -132,6 +96,100 @@ input {
   line-height: normal;
 }
 
+/* ==========================================================================
+   Barra de pesquisa
+   ========================================================================== */
+
+.obra-search {
+  --obra-gild: #e7c6a0;
+  --obra-parchment: #f4e8d7;
+  --obra-bronze: #9d8a72;
+  --obra-bronze-dim: #7a6a57;
+  --obra-hairline: #d4d4c5;
+  --obra-ember: #f3a878;
+  --obra-font-display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --obra-font-italic: 'Playfair Display', Georgia, serif;
+  --obra-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  grid-area: search;
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-family: var(--obra-font-display);
+}
+
+.obra-search__row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 10px 14px;
+  border: 1px solid var(--obra-hairline);
+  border-radius: 12px;
+  background: #ffffff;
+  transition:
+    border-color 240ms var(--obra-ease),
+    box-shadow 240ms var(--obra-ease);
+}
+
+.obra-search:focus-within .obra-search__row {
+  border-color: var(--obra-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
+}
+
+.obra-search__icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--obra-bronze);
+  transition: color 240ms var(--obra-ease);
+}
+
+.obra-search__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.obra-search:focus-within .obra-search__icon {
+  color: var(--obra-gild);
+}
+
+.obra-search__input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: var(--obra-font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2527;
+  padding: 4px 0;
+  caret-color: var(--obra-ember);
+  letter-spacing: -0.005em;
+}
+
+.obra-search__input::placeholder {
+  color: var(--obra-bronze-dim);
+  font-family: var(--obra-font-italic);
+  font-style: italic;
+  letter-spacing: -0.005em;
+}
+
+.obra-search__input:focus {
+  outline: none;
+}
+
+/* ==========================================================================
+   Botão adicionar cliente
+   ========================================================================== */
+
 .screen__add {
   grid-area: add;
   align-self: center;
@@ -139,130 +197,73 @@ input {
   margin-top: 0;
 }
 
-/* ==========================================================================
-   Busca
-   ========================================================================== */
-.search {
-  grid-area: search;
-  align-self: start;
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 18.5px;
-  width: 100%;
-  max-width: 536px;
-  height: 72px;
-  padding: 0 0 0 21.5px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-}
-
-.search:focus-within {
-  outline: 2px solid var(--color-brown);
-  outline-offset: 2px;
-}
-
-.search__icon {
-  flex: none;
-  width: 30px;
-  height: 31px;
-}
-
-.search__input {
-  position: relative;
-  top: -2px;
-  flex: 1;
-  min-width: 0;
-  height: 26px;
-  padding: 0;
-  color: var(--color-brown);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--letter-spacing);
-  line-height: normal;
-  background: transparent;
-  border: 0;
-  outline: none;
-  appearance: none;
-}
-
-.search__input::placeholder {
-  color: var(--color-brown);
-  opacity: 1;
-}
-
-/* ==========================================================================
-   Perfil
-   ========================================================================== */
-.profile {
-  grid-area: profile;
-  align-self: start;
-  position: relative;
-  width: 63px;
-  height: 62px;
-  margin-top: 10px;
-}
-
-.profile__avatar {
-  width: 63px;
-  height: 62px;
-}
-
-.profile__icon {
-  position: absolute;
-  top: 16px;
-  left: 19px;
-  width: 28.5px;
-  height: 28.7px;
-}
-
-/* ==========================================================================
-   Botão
-   ========================================================================== */
 .button {
-  width: 228px;
-  height: 52px;
-  padding: 0 0 0 3px;
-  color: var(--color-white);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--letter-spacing);
-  line-height: normal;
-  background: var(--color-accent);
-  border: 0;
-  border-radius: var(--radius-sm);
+  min-width: 78px;
+  min-height: 36px;
+  padding: 0 14px;
+
+  color: #fff;
+  background: #df4055;
+
+  border: 1px solid rgba(243, 168, 120, 0.35);
+  border-radius: 8px;
+
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
   cursor: pointer;
+
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
 }
 
-.button:focus-visible,
-.table__edit:focus-visible,
-.clients__scroll:focus-visible {
-  outline: 2px solid var(--color-brown);
-  outline-offset: 2px;
+.button:hover {
+  background: #faaab5;
+  transform: translateY(0) scale(0.97);
+}
+
+.button:active {
+  transform: scale(0.98);
 }
 
 /* ==========================================================================
-   Tabela de clientes
+   Tabela / grid de clientes
    ========================================================================== */
+
 .clients {
-  padding: var(--space-table-top) var(--space-table-right) var(--space-table-bottom) var(--space-table-left);
+  padding: var(--space-table-top) var(--space-table-right) var(--space-table-bottom)
+    var(--space-table-left);
 }
 
 .clients__scroll {
+  width: 100%;
   overflow-x: auto;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 30px 60px -45px rgba(44, 37, 39, 0.25);
 }
 
 .clients__table {
+  --obra-ink: #181410;
+  --obra-hairline: #e6e2d3;
+  --obra-ember: #f3a878;
+
   width: 100%;
-  min-width: 960px;
+  min-width: 850px;
   table-layout: fixed;
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  box-shadow: inset 0 0 0 1px var(--color-border);
+  background: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
 }
+
+/* Largura das colunas */
 
 .clients__table .mat-column-nome {
   width: 18%;
@@ -284,124 +285,245 @@ input {
   width: 22%;
 }
 
+/* Cabeçalho (continua escuro) */
+
 .clients__table .mat-mdc-header-cell {
-  height: 72px;
-  color: var(--color-black);
-  font-size: 14px;
-  font-family: var(--font-poppins);
-  font-weight: var(--font-weight-semibold);
+  height: 68px;
+  padding: 16px;
+  color: #e7c6a0;
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   text-align: center;
-  background: #f8f8f8;
+  background: #181410;
+  border-bottom: 1px solid #3a2e24;
 }
+
+/* Linhas */
+
+.clients__table .mat-mdc-row {
+  background: #ffffff;
+  transition:
+    background 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.clients__table .mat-mdc-row:hover {
+  background: #fdf8e9;
+}
+
+/* Células */
 
 .clients__table .mat-mdc-cell {
   height: 72px;
-  color: var(--color-black);
-  font-family: var(--font-inder);
-  font-size: 14px;
+  padding: 16px;
+  color: #2c2527;
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
   text-align: center;
+  border-bottom: 1px solid #e6e2d3;
 }
+
+/* Email e endereço */
 
 .clients__table .mat-mdc-cell.mat-column-email,
 .clients__table .mat-mdc-cell.mat-column-endereco {
   overflow-wrap: anywhere;
   text-align: left;
+  color: #6b5f52;
 }
 
-.clients__table .mat-mdc-cell.mat-column-acoes {
-  padding-right: 8px;
-  padding-left: 8px;
+/* Última linha sem borda */
+
+.clients__table .mat-mdc-row:last-child .mat-mdc-cell {
+  border-bottom: 0;
 }
 
-.clients__table .mat-mdc-header-cell,
-.clients__table .mat-mdc-cell {
-  padding: 12px 16px;
-  border-bottom-color: var(--color-border);
-}
-
-.clients__table .mat-mdc-row:hover {
-  background: var(--color-chip);
-}
+/* Mensagem de tabela vazia */
 
 .clients__empty {
-  padding: 32px;
-  color: var(--color-text);
-  font-family: var(--font-poppins);
+  padding: 36px;
+  color: #7a6a57;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  font-style: italic;
   text-align: center;
+  background: #ffffff;
 }
+
+/* ==========================================================================
+   Ações da tabela
+   ========================================================================== */
 
 .clients__actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
+
+/* Botão editar */
 
 .table__edit {
-  min-width: 80px;
-  min-height: 40px;
-  padding: 0 16px;
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  background: var(--color-chip);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  min-width: 78px;
+  min-height: 36px;
+  padding: 0 14px;
+
+  color: #f4e8d7;
+  background: #2a221b;
+
+  border: 1px solid #2a221b;
+  border-radius: 8px;
+
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
   cursor: pointer;
+
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
 }
 
-.table__delete{
-  min-width: 80px;
-  min-height: 40px;
-  padding: 0 16px;
-  color: var(--color-text);
-  font-family: var(--font-poppins);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  background: var(--color-chip-delete);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
+.table__edit:hover {
+  color: #2a221b;
+  background: #e7c6a0;
+  border-color: #e7c6a0;
+  transform: translateY(-2px);
 }
+
+/* Botão deletar */
+
+.table__delete {
+  min-width: 78px;
+  min-height: 36px;
+  padding: 0 14px;
+
+  color: #df4055;
+  background: transparent;
+
+  border: 1px solid rgba(223, 64, 85, 0.45);
+  border-radius: 8px;
+
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease;
+}
+
+.table__delete:hover {
+  color: #ffffff;
+  background: #df4055;
+  border-color: #df4055;
+  transform: translateY(-2px);
+}
+
+/* Efeito ao clicar */
+
+.table__edit:active,
+.table__delete:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Foco acessível */
+
+.table__edit:focus-visible,
+.table__delete:focus-visible {
+  outline: 2px solid #f3a878;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .clients {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients {
+    padding: 32px 12px;
+  }
+
+  .clients__scroll {
+    border-radius: 14px;
+  }
+
+  .clients__table {
+    min-width: 800px;
+  }
+
+  .clients__actions {
+    flex-wrap: nowrap;
+  }
+}
+
+/* ==========================================================================
+   Mensagens e acessibilidade
+   ========================================================================== */
 
 .clients__message {
   margin: 0 0 16px;
   color: var(--color-brown);
 }
 
+.button:focus-visible,
+.table__edit:focus-visible,
+.table__delete:focus-visible,
+.clients__scroll:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
-   Tablet (até 1024px)
+   Tablet
    ========================================================================== */
+
 @media (max-width: 1024px) {
-  .app {
-    display: block;
-    padding: 0 0 16px;
-  }
-
-  .screen {
-    margin: 0 16px;
-  }
-
   .screen__header {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: 45px auto;
     grid-template-areas:
-      "title title"
-      "search add";
+      'title title'
+      'search add';
     row-gap: 24px;
-    padding: var(--space-header-top) 32px 0 32px;
+    padding: var(--space-header-top) 32px 0;
+  }
+
+  .obra-search {
+    max-width: 100%;
   }
 
   .clients {
-    padding: 48px 24px 40px;
+    padding: 40px 24px;
   }
-
 }
 
 /* ==========================================================================
-   Mobile (até 768px)
+   Mobile
    ========================================================================== */
+
 @media (max-width: 768px) {
   .screen {
     margin: 0 12px;
@@ -411,19 +533,35 @@ input {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto;
     grid-template-areas:
-      "title"
-      "search"
-      "add";
-    row-gap: 24px;
-    padding: var(--space-header-top) 20px 0 20px;
+      'title'
+      'search'
+      'add';
+    row-gap: 20px;
+    padding: var(--space-header-top) 20px 0;
+  }
+
+  .screen__title {
+    font-size: 24px;
   }
 
   .screen__add {
     justify-self: start;
-    margin-top: 0;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
   }
 
   .clients {
-    padding: 40px 12px 32px;
+    padding: 32px 12px;
+  }
+
+  .clients__table {
+    min-width: 800px;
+  }
+
+  .clients__actions {
+    flex-wrap: nowrap;
   }
 }

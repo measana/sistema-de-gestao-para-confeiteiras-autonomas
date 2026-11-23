@@ -1,81 +1,275 @@
+/* ==========================================================================
+   Tokens de design (mesmos do styles.css da lista de clientes)
+   ========================================================================== */
+
+:host {
+  display: block;
+
+  --color-surface: #ffffff;
+  --color-border-strong: #d4d4c5;
+  --color-line: #e6e2d3;
+  --color-text: #2c2527;
+  --color-muted: #6b5f52;
+  --color-primary: #df4055;
+  --color-primary-hover: #faaab5;
+  --color-dark: #181410;
+  --color-dark-soft: #2a221b;
+  --color-gild: #e7c6a0;
+  --color-ember: #f3a878;
+  --color-chip: #fdf8e9;
+  --color-brown: #6b3e26;
+  --color-danger: #c62828;
+  --color-shadow: rgba(44, 37, 39, 0.15);
+
+  --font-poppins: 'Poppins', Arial, sans-serif;
+  --font-archivo: 'Archivo', Arial, sans-serif;
+  --font-italic: 'Playfair Display', Georgia, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 35px;
+
+  --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+
+  /* Cartão escuro (archive card) */
+  --obra-ink: #181410;
+  --obra-carbon: #221c16;
+  --obra-walnut: #2a221b;
+  --obra-gild: #e7c6a0;
+  --obra-parchment: #f4e8d7;
+  --obra-bronze: #9d8a72;
+  --obra-bronze-dim: #7a6a57;
+  --obra-hairline: #3a2e24;
+  --obra-ember: #f3a878;
+  --obra-danger: #ff8f9c;
+  --obra-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* ==========================================================================
+   Tela
+   ========================================================================== */
+
 .produto-page {
-  min-height: 100vh;
-  padding: 40px;
-  background: #fff;
+  padding: 24px 32px 48px 48px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-screen);
+  font-family: var(--font-archivo);
 }
 
 .produto-header h1 {
+  margin: 0 0 32px;
+  color: var(--color-text);
+  font-family: var(--font-poppins);
   font-size: 28px;
-  color: #2c2527;
-  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: normal;
 }
 
+/* ==========================================================================
+   Formulário
+   ========================================================================== */
+
 .form-card {
-  max-width: 750px;
-  padding: 35px;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 760px;
+  padding: 2rem;
+  color: var(--obra-gild);
+  background: var(--obra-carbon);
+  border: 1px solid var(--obra-hairline);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 0 rgba(255, 230, 200, 0.04) inset,
+    0 30px 60px -45px rgba(0, 0, 0, 0.7);
+  transition: border-color 320ms var(--obra-ease);
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 80% at 12% 8%,
+    rgba(247, 222, 188, 0.06) 0%,
+    rgba(247, 222, 188, 0.02) 28%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.form-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-card:focus-within {
+  border-color: var(--obra-bronze-dim);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
   margin-bottom: 22px;
 }
 
 .form-group label {
-  font-weight: 600;
-  color: #444;
+  color: var(--obra-bronze);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-md);
+  caret-color: var(--obra-ember);
+  color-scheme: dark;
+  font-family: var(--font-archivo);
   font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    border-color 240ms var(--obra-ease),
+    box-shadow 240ms var(--obra-ease);
+}
+
+.form-group input:-webkit-autofill,
+.form-group select:-webkit-autofill {
+  -webkit-text-fill-color: var(--obra-parchment);
+  box-shadow: 0 0 0 1000px var(--obra-walnut) inset;
+  caret-color: var(--obra-parchment);
+}
+
+.form-group input::placeholder {
+  color: var(--obra-bronze-dim);
+  font-family: var(--font-italic);
+  font-style: italic;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  outline: 2px solid #f95268;
-  border-color: transparent;
+  outline: none;
+  border-color: var(--color-ember);
+  box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
+}
+
+/* Botão "escolher arquivo" no mesmo estilo dos botões secundários */
+
+.form-group input[type='file']::file-selector-button {
+  margin-right: 12px;
+  padding: 6px 14px;
+  color: var(--obra-gild);
+  background: var(--obra-carbon);
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 240ms ease,
+    border-color 240ms ease;
+}
+
+.form-group input[type='file']::file-selector-button:hover {
+  background: var(--obra-ink);
+  border-color: var(--obra-bronze-dim);
 }
 
 .preview {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 10px;
+  border: 1px solid var(--obra-hairline);
+  border-radius: var(--radius-md);
 }
+
+.error-message {
+  margin: 0 0 20px;
+  color: var(--color-danger);
+  font-size: 14px;
+}
+
+.form-card .error-message {
+  color: var(--obra-danger);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 8px;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--obra-hairline);
 }
 
 .btn-cancel,
 .btn-save {
-  padding: 12px 25px;
-  border-radius: 8px;
+  min-width: 96px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-archivo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-cancel {
-  background: white;
-  border: 1px solid #ddd;
+  transition:
+    color 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    transform 240ms ease,
+    opacity 240ms ease;
 }
 
 .btn-save {
-  background: #f95268;
-  color: white;
-  border: none;
+  color: #ffffff;
+  background: var(--color-primary);
+  border: 1px solid rgba(243, 168, 120, 0.35);
+}
+
+.btn-save:hover:not(:disabled) {
+  color: var(--obra-ink);
+  background: var(--obra-gild);
+  border-color: var(--obra-gild);
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-save:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .btn-save:disabled {
@@ -83,16 +277,65 @@
   cursor: not-allowed;
 }
 
-.error-message {
-  color: #c62828;
+.btn-cancel {
+  color: var(--color-dark-soft);
+  background: #ffffff;
+  border: 1px solid var(--color-border-strong);
+}
+
+.btn-cancel:hover {
+  background: var(--color-chip);
+  border-color: var(--color-gild);
+}
+
+.form-card .btn-cancel {
+  color: var(--obra-gild);
+  background: transparent;
+  border-color: var(--obra-hairline);
+}
+
+.form-card .btn-cancel:hover {
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border-color: var(--obra-bronze-dim);
+}
+
+.btn-cancel:active {
+  transform: scale(0.98);
+}
+
+.btn-cancel:focus-visible,
+.btn-save:focus-visible {
+  outline: 2px solid var(--obra-ember);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .produto-page {
+    padding: 24px 32px 40px;
+  }
 }
 
 @media (max-width: 768px) {
   .produto-page {
-    padding: 20px;
+    margin: 0 12px;
+    padding: 24px 20px 32px;
+  }
+
+  .produto-header h1 {
+    font-size: 24px;
   }
 
   .form-card {
     padding: 20px;
+  }
+
+  .form-actions .btn-cancel,
+  .form-actions .btn-save {
+    flex: 1;
   }
 }
