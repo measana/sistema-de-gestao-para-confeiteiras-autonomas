@@ -60,7 +60,6 @@ button {
   color: var(--color-text);
   background: var(--color-surface);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-screen);
   font-family: var(--font-archivo);
 }
 

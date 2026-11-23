@@ -69,7 +69,6 @@ input {
   min-width: 0;
   background: var(--color-surface);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-screen);
 }
 
 .screen__header {

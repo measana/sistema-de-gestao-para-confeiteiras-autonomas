@@ -23,4 +23,12 @@ export class PerfilService {
     sessionStorage.setItem('nomePerfil', perfil.nome);
     sessionStorage.setItem('fotoPerfil', perfil.foto);
   }
+
+  encerrarSessao(): void {
+    this.perfil.set({ id: 0, usuario: 'Usuário', nome: 'Usuário', foto: '' });
+    sessionStorage.removeItem('usuarioId');
+    sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('nomePerfil');
+    sessionStorage.removeItem('fotoPerfil');
+  }
 }

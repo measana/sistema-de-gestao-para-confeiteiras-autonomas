@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { PerfilService } from '../perfil/perfil.service';
 
 @Component({
@@ -13,7 +13,9 @@ export class Menu {
   private readonly mobileBreakpoint = window.matchMedia('(max-width: 1024px)');
   private readonly destroyRef = inject(DestroyRef);
   protected readonly menuOpen = signal(!this.mobileBreakpoint.matches);
-  protected readonly perfil = inject(PerfilService).perfil;
+  private readonly router = inject(Router);
+  private readonly perfilService = inject(PerfilService);
+  protected readonly perfil = this.perfilService.perfil;
 
   constructor() {
     const syncWithViewport = (event: MediaQueryListEvent) => {
@@ -28,5 +30,10 @@ export class Menu {
 
   protected toggleMenu(): void {
     this.menuOpen.update((open) => !open);
+  }
+
+  protected sair(): void {
+    this.perfilService.encerrarSessao();
+    void this.router.navigateByUrl('/');
   }
 }

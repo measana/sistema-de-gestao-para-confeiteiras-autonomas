@@ -54,7 +54,6 @@ textarea {
   padding: 24px 32px 48px 48px;
   background: var(--color-surface);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-screen);
   font-family: var(--font-archivo);
 }
 
