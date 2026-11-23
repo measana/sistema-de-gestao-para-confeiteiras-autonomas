@@ -50,7 +50,7 @@ Quem trabalha com confeitaria de forma autônoma costuma cuidar de tudo sozinha:
 | [Angular](https://angular.dev/) | Framework principal da aplicação |
 | HTML5 | Estrutura das páginas |
 | CSS3 | Estilização e responsividade |
-| JavaScript / TypeScript | Lógica e interatividade |
+| TypeScript | Lógica e interatividade |
 
 
 ## 🚀 Como executar o projeto
