@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
 import { catchError, filter, of, startWith, Subject, switchMap } from 'rxjs';
 import { Cliente } from '../../model/cliente';
 import { ClienteService } from '../cliente.service';
-import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   imports: [MatDialogModule],
@@ -83,6 +82,20 @@ export class ClienteList {
   protected filtrarClientes(event: Event): void {
     const termo = (event.target as HTMLInputElement).value;
     this.dataSource.filter = this.normalizarTexto(termo.trim());
+  }
+
+  protected formatarTelefone(telefone: string): string {
+    const digitos = telefone.replace(/\D/g, '');
+
+    if (digitos.length === 11) {
+      return digitos.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    }
+
+    if (digitos.length === 10) {
+      return digitos.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+    }
+
+    return telefone;
   }
 
   protected confirmarExclusao(cliente: Cliente): void {

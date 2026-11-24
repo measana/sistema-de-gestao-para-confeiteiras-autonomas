@@ -1,6 +1,9 @@
 <main class="produto-page">
   <header class="produto-header">
-    <h1>{{ isEdicao() ? 'Editar Produto' : 'Adicionar Produto' }}</h1>
+    <div>
+      <h1>{{ isEdicao() ? 'Editar Produto' : 'Adicionar Produto' }}</h1>
+      <p>{{ isEdicao() ? 'Atualize as informações do produto.' : 'Preencha as informações para cadastrar um novo produto.' }}</p>
+    </div>
   </header>
 
   @if (isLoading()) {
@@ -11,7 +14,7 @@
     <button type="button" class="btn-cancel" (click)="cancelar()">Voltar</button>
   } @else {
     <section class="form-card">
-      <form #produtoForm="ngForm" (ngSubmit)="salvar()">
+      <form class="produto-form" #produtoForm="ngForm" (ngSubmit)="salvar()">
         <div class="form-group">
           <label for="nome">Nome</label>
 

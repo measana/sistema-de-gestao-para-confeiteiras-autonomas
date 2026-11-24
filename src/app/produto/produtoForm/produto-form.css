@@ -71,14 +71,28 @@ select {
   font-family: var(--font-archivo);
 }
 
+.produto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
 .produto-header h1 {
-  margin: 0 0 32px;
+  margin: 0 0 8px;
   color: var(--color-text);
   font-family: var(--font-poppins);
   font-size: 28px;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: normal;
+}
+
+.produto-header p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
 /* ==========================================================================
@@ -337,4 +351,9 @@ select {
   .form-actions .btn-save {
     flex: 1;
   }
+}
+
+.produto-form {
+  display: flex;
+  flex-direction: column;
 }

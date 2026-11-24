@@ -15,6 +15,7 @@
   --color-dark: #181410;
   --color-dark-soft: #2a221b;
   --color-gild: #e7c6a0;
+  --color-parchment: #f4e8d7;
   --color-ember: #f3a878;
   --color-chip: #fdf8e9;
   --color-brown: #6b3e26;
@@ -31,6 +32,18 @@
   --radius-xl: 35px;
 
   --shadow-screen: 5px 4px 8px 0 var(--color-shadow);
+
+  --obra-ink: #181410;
+  --obra-carbon: #221c16;
+  --obra-walnut: #2a221b;
+  --obra-gild: #e7c6a0;
+  --obra-parchment: #f4e8d7;
+  --obra-bronze: #9d8a72;
+  --obra-bronze-dim: #7a6a57;
+  --obra-hairline: #3a2e24;
+  --obra-ember: #f3a878;
+  --obra-danger: #ff8f9c;
+  --obra-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 *,
@@ -86,12 +99,42 @@ textarea {
    ========================================================================== */
 
 .form-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   max-width: 760px;
-  padding: 32px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 30px 60px -45px rgba(44, 37, 39, 0.25);
+  padding: 2rem;
+  color: var(--obra-gild);
+  background: var(--obra-carbon);
+  border: 1px solid var(--obra-hairline);
+  border-radius: 28px;
+  box-shadow:
+    0 1px 0 rgba(255, 230, 200, 0.04) inset,
+    0 30px 60px -45px rgba(0, 0, 0, 0.7);
+  transition: border-color 320ms var(--obra-ease);
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 80% at 12% 8%,
+    rgba(247, 222, 188, 0.06) 0%,
+    rgba(247, 222, 188, 0.02) 28%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.form-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-card:focus-within {
+  border-color: var(--obra-bronze-dim);
 }
 
 .cliente-form {
@@ -107,10 +150,10 @@ textarea {
 }
 
 .form-group label {
-  color: var(--color-muted);
-  font-size: 12px;
+  color: var(--obra-bronze);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -118,29 +161,31 @@ textarea {
 .form-group textarea {
   width: 100%;
   padding: 10px 14px;
-  color: var(--color-text);
-  background: #ffffff;
-  border: 1px solid var(--color-border-strong);
+  color: var(--obra-parchment);
+  background: var(--obra-walnut);
+  border: 1px solid var(--obra-hairline);
   border-radius: var(--radius-md);
+  caret-color: var(--obra-ember);
+  color-scheme: dark;
   font-family: var(--font-archivo);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.005em;
   transition:
-    border-color 240ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    border-color 240ms var(--obra-ease),
+    box-shadow 240ms var(--obra-ease);
 }
 
-.form-group textarea {
-  min-height: 140px;
-  resize: vertical;
+.form-group input:-webkit-autofill,
+.form-group textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--obra-parchment);
+  box-shadow: 0 0 0 1000px var(--obra-walnut) inset;
+  caret-color: var(--obra-parchment);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #7a6a57;
-  font-family: var(--font-italic);
-  font-style: italic;
+  color: var(--obra-bronze-dim);
 }
 
 .form-group input:focus,
@@ -150,22 +195,24 @@ textarea {
   box-shadow: 0 0 0 3px rgba(243, 168, 120, 0.15);
 }
 
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--obra-hairline);
+}
+
 .error-message {
+  color: var(--obra-danger, #ff8f9c);
   margin: 0 0 20px;
-  color: var(--color-danger);
   font-size: 14px;
 }
 
 /* ==========================================================================
    Botões
    ========================================================================== */
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
-}
 
 .btn-cancel,
 .btn-save {
@@ -208,13 +255,14 @@ textarea {
 }
 
 .btn-cancel {
-  color: var(--color-dark-soft);
-  background: #ffffff;
-  border: 1px solid var(--color-border-strong);
+  color: #f4e8d7;
+  background: var(--color-dark-soft);
+  border: 1px solid var(--color-dark-soft);
 }
 
 .btn-cancel:hover {
-  background: var(--color-chip);
+  color: var(--color-dark-soft);
+  background: var(--color-gild);
   border-color: var(--color-gild);
 }
 
